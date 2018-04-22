@@ -1,0 +1,175 @@
+﻿<style>
+    #map {
+        height: 100%;
+    }
+
+    .controls {
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        font-family: Roboto;
+        font-weight: 300;
+    }
+
+    #menu-toggle {
+        margin: 30px;
+        padding: 13px;
+    }
+
+    #pac-input {
+        margin-top: 30px;
+        background-color: #fff;
+        font-size: 15px;
+        padding: 0 11px 0 13px;
+        height: 50px;
+        width: 50%;
+    }
+
+    #pac-button {
+        margin-bottom: 40px;
+        background-color: #e85c31;
+        color: #fff;
+        font-size: 20px;
+        height: 60px;
+        width: 200px;
+        cursor: pointer;
+    }
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+
+    .pac-container {
+        font-family: Roboto;
+    }
+
+    #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+    }
+
+        #type-selector label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+    #target {
+        width: 345px;
+    }
+</style>
+
+<input id="pac-input" class="controls" type="text" placeholder="¿A DÓNDE VAS?">
+<button id="pac-button" class="controls" type="button"><b>IR POR MI TAXI</b></button>
+<a href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></a>
+<div id="map"></div>
+
+<script>
+
+    function initAutocomplete() {
+
+        var pos = {
+            lat: -12.0551637,
+            lng: -77.0802425
+        };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: pos,
+            zoom: 17,
+            mapTypeId: 'roadmap',
+            mapTypeControl: false
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "<span>Estoy Aquí</span>"
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                var mk = new google.maps.Marker({
+                    map: map,
+                    position: pos
+                });
+
+                infowindow.open(map, mk);
+
+                map.setCenter(pos);
+            }, function () {
+                console.log("error..");
+            });
+        } else {
+            console.log("error..");
+        }
+
+        var input = $('#pac-input')[0];
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+        map.addListener('bounds_changed', function () {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+            markers.forEach(function (marker) {
+                marker.setMap(null);
+            });
+
+            markers = [];
+
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function (place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+
+            if (markers.length > 0)
+                $('#pac-button').css('display', '');
+        });
+
+        var button = $('#pac-button')[0];
+        button.style.display = 'none';
+        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(button);
+
+        button.addEventListener("click", function () {
+            window.location.href = '@Url.Action("Elegir", "Manage")' + '?origen=origen&destino=destino'
+        });
+
+        var toggle = $('#menu-toggle')[0];
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(toggle);
+    }
+
+</script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EE3yao2TPuQ5MxrEDBmVfQLUkXH1iE&libraries=places&callback=initAutocomplete"
+        async defer></script>

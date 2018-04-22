@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/fontawesome")
+</head>
+<body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    Hola, <b> @ViewBag.NombreCliente </b>
+                </li>
+                <li>
+                    <a href="@Url.Action("Login")">
+                        <i class="fas fa-address-card"></i> Actualizar Datos
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Login")">
+                        <i class="fas fa-credit-card"></i> Agregar Tarjeta
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Login")">
+                        <i class="fas fa-calendar-alt"></i> Reservar
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Login")">
+                        <i class="fas fa-key"></i> Cambiar Constraseña
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Login", "Auth")">
+                        <i class="fas fa-sign-out-alt"></i> Salir
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            @RenderBody()
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model TAGO_Presentacion.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/fontawesome")
+
+<body class="text-center">
+    @using (Html.BeginForm("Login", "Auth",
+                    FormMethod.Post, new { @class = "form-signin" }))
+    {
+        <img class="mb-4" src="~/Images/logo.jpg" alt="" width="300" height="150">
+        <h1 class="h3 mb-3 font-weight-normal">Ingreso de Clientes</h1>
+        @Html.ValidationSummary(true)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Email) })
+        @Html.ValidationMessageFor(m => m.Email)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Password).ToHtmlString()) })
+        @Html.ValidationMessageFor(m => m.Password)
+        <br />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión <i class="fas fa-sign-in-alt"></i></button>
+        <br />
+        @Html.ActionLink("¿No estas registrado?", "Registro", "Auth")
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    }
+</body>

@@ -1,0 +1,47 @@
+﻿@model TAGO_Presentacion.Models.RegistroModel
+
+@{
+    Layout = null;
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/fontawesome")
+
+<body class="text-center">
+    @using (Html.BeginForm("Registro", "Auth",
+                    FormMethod.Post, new { @class = "form-signin" }))
+    {
+        <img class="mb-4" src="~/Images/tago.jpg" alt="" width="300" height="150">
+        <h1 class="h3 mb-3 font-weight-normal">Registro de Clientes</h1>
+        if (!ViewBag.exito)
+        {
+            @Html.ValidationSummary(true)
+            @Html.TextBoxFor(m => m.Nombres, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Nombres) })
+            @Html.ValidationMessageFor(m => m.Nombres)
+            @Html.TextBoxFor(m => m.Apellidos, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Apellidos) })
+            @Html.ValidationMessageFor(m => m.Apellidos)
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">+51</span>
+                </div>
+                @Html.TextBoxFor(m => m.Celular, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Celular) })
+            </div>
+            @Html.ValidationMessageFor(m => m.Celular)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Email) })
+            @Html.ValidationMessageFor(m => m.Email)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Password).ToHtmlString()) })
+            @Html.ValidationMessageFor(m => m.Password)
+            <br />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme <i class="fas fa-save"></i></button>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                <i class="fas fa-check-circle"></i> Cliente registrado exitosamente
+            </div>
+            @Html.ActionLink("Ir a Ingreso de Clientes", "Login", "Auth", new { }, new { @class = "btn btn-lg btn-primary btn-block" })
+        }
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    }
+</body>
