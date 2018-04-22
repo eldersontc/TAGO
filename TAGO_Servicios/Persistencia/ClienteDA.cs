@@ -15,42 +15,42 @@ namespace TAGO_Servicios.Persistencia
         public Cliente Crear(Cliente cliente)
         {
             Cliente clienteCreado = null;
-            string sql = "INSERT INTO Cliente VALUES (@Nombres, @Apellidos, @Celular, @Email, @Password); SELECT SCOPE_IDENTITY();";
-            int Codigo = 0;
+            string sql = "INSERT INTO Cliente VALUES (@DNI, @Nombres, @Apellidos, @Celular, @Email, @Password)";
             using (SqlConnection cn = new SqlConnection(cadenaConexion))
             {
                 cn.Open();
-
                 using (SqlCommand cmd = new SqlCommand(sql, cn))
                 {
+                    cmd.Parameters.Add(new SqlParameter("@DNI", cliente.DNI));
                     cmd.Parameters.Add(new SqlParameter("@Nombres", cliente.Nombres));
                     cmd.Parameters.Add(new SqlParameter("@Apellidos", cliente.Apellidos));
                     cmd.Parameters.Add(new SqlParameter("@Celular", cliente.Celular));
                     cmd.Parameters.Add(new SqlParameter("@Email", cliente.Email));
                     cmd.Parameters.Add(new SqlParameter("@Password", cliente.Password));
-                    Codigo = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.ExecuteNonQuery();
                 }
             }
-            clienteCreado = Obtener("Codigo", Codigo);
+            clienteCreado = Obtener(cliente.DNI);
             return clienteCreado;
         }
 
-        public Cliente Obtener(string campo, object valor)
+        public Cliente Obtener(string dni)
         {
             Cliente clienteEncontrado = null;
-            string sql = string.Format("SELECT * FROM Cliente WHERE {0} = '{1}'", campo, valor);
+            string sql = "SELECT * FROM Cliente WHERE DNI = @DNI";
             using (SqlConnection cn = new SqlConnection(cadenaConexion))
             {
                 cn.Open();
                 using (SqlCommand cmd = new SqlCommand(sql, cn))
                 {
+                    cmd.Parameters.Add(new SqlParameter("@DNI", dni));
                     using (SqlDataReader rd = cmd.ExecuteReader())
                     {
                         if (rd.Read())
                         {
                             clienteEncontrado = new Cliente()
                             {
-                                Codigo = (int)rd["Codigo"],
+                                DNI = rd["DNI"].ToString(),
                                 Nombres = rd["Nombres"].ToString(),
                                 Apellidos = rd["Apellidos"].ToString(),
                                 Celular = rd["Celular"].ToString(),
@@ -60,32 +60,35 @@ namespace TAGO_Servicios.Persistencia
                         }
                     }
                 }
+            }
+            return clienteEncontrado;
+        }
 
-                if (clienteEncontrado != null)
+        public Cliente ObtenerxEmail(string email)
+        {
+            Cliente clienteEncontrado = null;
+            string sql = "SELECT * FROM Cliente WHERE Email = @Email";
+            using (SqlConnection cn = new SqlConnection(cadenaConexion))
+            {
+                cn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, cn))
                 {
-
-                    string sqlTarjeta = "SELECT * FROM Tarjeta WHERE Cliente = @Cliente";
-
-                    clienteEncontrado.Tarjetas = new List<Tarjeta>();
-
-                    using (SqlCommand cmd = new SqlCommand(sqlTarjeta, cn))
+                    cmd.Parameters.Add(new SqlParameter("@Email", email));
+                    using (SqlDataReader rd = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.Add(new SqlParameter("@Cliente", clienteEncontrado.Codigo));
-                        using (SqlDataReader rd = cmd.ExecuteReader())
+                        if (rd.Read())
                         {
-                            while (rd.Read())
+                            clienteEncontrado = new Cliente()
                             {
-                                clienteEncontrado.Tarjetas.Add(new Tarjeta()
-                                {
-                                    Codigo = (int)rd["Codigo"],
-                                    Numero = rd["Numero"].ToString(),
-                                    FechaVencimiento = rd["FechaVencimiento"].ToString(),
-                                    CVV = rd["CVV"].ToString()
-                                });
-                            }
+                                DNI = rd["DNI"].ToString(),
+                                Nombres = rd["Nombres"].ToString(),
+                                Apellidos = rd["Apellidos"].ToString(),
+                                Celular = rd["Celular"].ToString(),
+                                Email = rd["Email"].ToString(),
+                                Password = rd["Password"].ToString()
+                            };
                         }
                     }
-
                 }
             }
             return clienteEncontrado;
@@ -94,13 +97,13 @@ namespace TAGO_Servicios.Persistencia
         public Cliente Modificar(Cliente cliente)
         {
             Cliente clienteModificado = null;
-            string sql = "UPDATE Cliente SET Nombres = @Nombres, Apellidos = @Apellidos, Celular = @Celular, Email = @Email, Password = @Password WHERE Codigo = @Codigo";
+            string sql = "UPDATE Cliente SET Nombres = @Nombres, Apellidos = @Apellidos, Celular = @Celular, Email = @Email, Password = @Password WHERE DNI = @DNI";
             using (SqlConnection cn = new SqlConnection(cadenaConexion))
             {
                 cn.Open();
                 using (SqlCommand cmd = new SqlCommand(sql, cn))
                 {
-                    cmd.Parameters.Add(new SqlParameter("@Codigo", cliente.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@DNI", cliente.DNI));
                     cmd.Parameters.Add(new SqlParameter("@Nombres", cliente.Nombres));
                     cmd.Parameters.Add(new SqlParameter("@Apellidos", cliente.Apellidos));
                     cmd.Parameters.Add(new SqlParameter("@Celular", cliente.Celular));
@@ -109,7 +112,7 @@ namespace TAGO_Servicios.Persistencia
                     cmd.ExecuteNonQuery();
                 }
             }
-            clienteModificado = Obtener("Codigo", cliente.Codigo);
+            clienteModificado = Obtener(cliente.DNI);
             return clienteModificado;
         }
     }

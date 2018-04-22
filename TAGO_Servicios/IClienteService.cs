@@ -19,15 +19,6 @@ namespace TAGO_Servicios
         Cliente ModificarCliente(Cliente cliente);
 
         [OperationContract]
-        Cliente ConsultarCliente(string Email);
-
-        [OperationContract]
-        Tarjeta RegistrarTarjeta(Tarjeta tarjeta);
-
-        [OperationContract]
-        Tarjeta ModificarTarjeta(Tarjeta tarjeta);
-
-        [OperationContract]
-        int EliminarTarjeta(int codigo);
+        Cliente ConsultarClientexEmail(string Email);
     }
 }

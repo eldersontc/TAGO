@@ -20,7 +20,7 @@ namespace TAGO_Presentacion.Controllers
             if (ModelState.IsValid)
             {
                 ClienteService.ClienteServiceClient proxy = new ClienteService.ClienteServiceClient();
-                ClienteService.Cliente cliente = proxy.ConsultarCliente(model.Email);
+                ClienteService.Cliente cliente = proxy.ConsultarClientexEmail(model.Email);
                 if (cliente != null && cliente.Password.Equals(model.Password))
                 {
                     Session["clienteLogueado"] = cliente;
@@ -47,6 +47,7 @@ namespace TAGO_Presentacion.Controllers
                     ClienteService.ClienteServiceClient proxy = new ClienteService.ClienteServiceClient();
                     ClienteService.Cliente cliente = proxy.RegistrarCliente(new ClienteService.Cliente
                     {
+                        DNI = model.DNI,
                         Nombres = model.Nombres,
                         Apellidos = model.Apellidos,
                         Celular = model.Celular,

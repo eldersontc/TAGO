@@ -12,11 +12,13 @@
     @using (Html.BeginForm("Registro", "Auth",
                     FormMethod.Post, new { @class = "form-signin" }))
     {
-        <img class="mb-4" src="~/Images/tago.jpg" alt="" width="300" height="150">
+        <img class="mb-4" src="~/Images/logo.jpg" alt="" width="300" height="150">
         <h1 class="h3 mb-3 font-weight-normal">Registro de Clientes</h1>
         if (!ViewBag.exito)
         {
             @Html.ValidationSummary(true)
+            @Html.TextBoxFor(m => m.DNI, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.DNI) })
+            @Html.ValidationMessageFor(m => m.DNI)
             @Html.TextBoxFor(m => m.Nombres, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Nombres) })
             @Html.ValidationMessageFor(m => m.Nombres)
             @Html.TextBoxFor(m => m.Apellidos, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Apellidos) })

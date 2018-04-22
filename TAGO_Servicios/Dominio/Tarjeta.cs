@@ -7,8 +7,7 @@ namespace TAGO_Servicios.Dominio
 {
     public class Tarjeta
     {
-        public int Cliente { get; set; }
-        public int Codigo { get; set; }
+        public string Cliente { get; set; }
         public string Numero { get; set; }
         public string FechaVencimiento { get; set; }
         public string CVV { get; set; }

@@ -9,6 +9,10 @@ namespace TAGO_Presentacion.Models
     public class RegistroModel
     {
         [Required]
+        [Display(Name = "DNI")]
+        public string DNI { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

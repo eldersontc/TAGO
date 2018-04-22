@@ -199,9 +199,6 @@
     <Content Include="Service References\ClienteService\TAGO_Presentacion.ClienteService.Cliente.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ClienteService\TAGO_Presentacion.ClienteService.Tarjeta.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Manage\Mapa.cshtml" />
     <Content Include="Views\Auth\Registro.cshtml" />
