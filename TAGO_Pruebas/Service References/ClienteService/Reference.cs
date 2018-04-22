@@ -29,7 +29,7 @@ namespace TAGO_Pruebas.ClienteService {
         private string CelularField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CodigoField;
+        private string DNIField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
@@ -39,9 +39,6 @@ namespace TAGO_Pruebas.ClienteService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TAGO_Pruebas.ClienteService.Tarjeta[] TarjetasField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -80,14 +77,14 @@ namespace TAGO_Pruebas.ClienteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Codigo {
+        public string DNI {
             get {
-                return this.CodigoField;
+                return this.DNIField;
             }
             set {
-                if ((this.CodigoField.Equals(value) != true)) {
-                    this.CodigoField = value;
-                    this.RaisePropertyChanged("Codigo");
+                if ((object.ReferenceEquals(this.DNIField, value) != true)) {
+                    this.DNIField = value;
+                    this.RaisePropertyChanged("DNI");
                 }
             }
         }
@@ -131,128 +128,6 @@ namespace TAGO_Pruebas.ClienteService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public TAGO_Pruebas.ClienteService.Tarjeta[] Tarjetas {
-            get {
-                return this.TarjetasField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TarjetasField, value) != true)) {
-                    this.TarjetasField = value;
-                    this.RaisePropertyChanged("Tarjetas");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Tarjeta", Namespace="http://schemas.datacontract.org/2004/07/TAGO_Servicios.Dominio")]
-    [System.SerializableAttribute()]
-    public partial class Tarjeta : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CVVField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ClienteField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CodigoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FechaVencimientoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NumeroField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CVV {
-            get {
-                return this.CVVField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CVVField, value) != true)) {
-                    this.CVVField = value;
-                    this.RaisePropertyChanged("CVV");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Cliente {
-            get {
-                return this.ClienteField;
-            }
-            set {
-                if ((this.ClienteField.Equals(value) != true)) {
-                    this.ClienteField = value;
-                    this.RaisePropertyChanged("Cliente");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Codigo {
-            get {
-                return this.CodigoField;
-            }
-            set {
-                if ((this.CodigoField.Equals(value) != true)) {
-                    this.CodigoField = value;
-                    this.RaisePropertyChanged("Codigo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FechaVencimiento {
-            get {
-                return this.FechaVencimientoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FechaVencimientoField, value) != true)) {
-                    this.FechaVencimientoField = value;
-                    this.RaisePropertyChanged("FechaVencimiento");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Numero {
-            get {
-                return this.NumeroField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NumeroField, value) != true)) {
-                    this.NumeroField = value;
-                    this.RaisePropertyChanged("Numero");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -279,29 +154,11 @@ namespace TAGO_Pruebas.ClienteService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ModificarCliente", ReplyAction="http://tempuri.org/IClienteService/ModificarClienteResponse")]
         System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Cliente> ModificarClienteAsync(TAGO_Pruebas.ClienteService.Cliente cliente);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ConsultarCliente", ReplyAction="http://tempuri.org/IClienteService/ConsultarClienteResponse")]
-        TAGO_Pruebas.ClienteService.Cliente ConsultarCliente(string Email);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ConsultarClientexEmail", ReplyAction="http://tempuri.org/IClienteService/ConsultarClientexEmailResponse")]
+        TAGO_Pruebas.ClienteService.Cliente ConsultarClientexEmail(string Email);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ConsultarCliente", ReplyAction="http://tempuri.org/IClienteService/ConsultarClienteResponse")]
-        System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Cliente> ConsultarClienteAsync(string Email);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/RegistrarTarjeta", ReplyAction="http://tempuri.org/IClienteService/RegistrarTarjetaResponse")]
-        TAGO_Pruebas.ClienteService.Tarjeta RegistrarTarjeta(TAGO_Pruebas.ClienteService.Tarjeta tarjeta);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/RegistrarTarjeta", ReplyAction="http://tempuri.org/IClienteService/RegistrarTarjetaResponse")]
-        System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Tarjeta> RegistrarTarjetaAsync(TAGO_Pruebas.ClienteService.Tarjeta tarjeta);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ModificarTarjeta", ReplyAction="http://tempuri.org/IClienteService/ModificarTarjetaResponse")]
-        TAGO_Pruebas.ClienteService.Tarjeta ModificarTarjeta(TAGO_Pruebas.ClienteService.Tarjeta tarjeta);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ModificarTarjeta", ReplyAction="http://tempuri.org/IClienteService/ModificarTarjetaResponse")]
-        System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Tarjeta> ModificarTarjetaAsync(TAGO_Pruebas.ClienteService.Tarjeta tarjeta);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/EliminarTarjeta", ReplyAction="http://tempuri.org/IClienteService/EliminarTarjetaResponse")]
-        int EliminarTarjeta(int codigo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/EliminarTarjeta", ReplyAction="http://tempuri.org/IClienteService/EliminarTarjetaResponse")]
-        System.Threading.Tasks.Task<int> EliminarTarjetaAsync(int codigo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ConsultarClientexEmail", ReplyAction="http://tempuri.org/IClienteService/ConsultarClientexEmailResponse")]
+        System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Cliente> ConsultarClientexEmailAsync(string Email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -347,36 +204,12 @@ namespace TAGO_Pruebas.ClienteService {
             return base.Channel.ModificarClienteAsync(cliente);
         }
         
-        public TAGO_Pruebas.ClienteService.Cliente ConsultarCliente(string Email) {
-            return base.Channel.ConsultarCliente(Email);
+        public TAGO_Pruebas.ClienteService.Cliente ConsultarClientexEmail(string Email) {
+            return base.Channel.ConsultarClientexEmail(Email);
         }
         
-        public System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Cliente> ConsultarClienteAsync(string Email) {
-            return base.Channel.ConsultarClienteAsync(Email);
-        }
-        
-        public TAGO_Pruebas.ClienteService.Tarjeta RegistrarTarjeta(TAGO_Pruebas.ClienteService.Tarjeta tarjeta) {
-            return base.Channel.RegistrarTarjeta(tarjeta);
-        }
-        
-        public System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Tarjeta> RegistrarTarjetaAsync(TAGO_Pruebas.ClienteService.Tarjeta tarjeta) {
-            return base.Channel.RegistrarTarjetaAsync(tarjeta);
-        }
-        
-        public TAGO_Pruebas.ClienteService.Tarjeta ModificarTarjeta(TAGO_Pruebas.ClienteService.Tarjeta tarjeta) {
-            return base.Channel.ModificarTarjeta(tarjeta);
-        }
-        
-        public System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Tarjeta> ModificarTarjetaAsync(TAGO_Pruebas.ClienteService.Tarjeta tarjeta) {
-            return base.Channel.ModificarTarjetaAsync(tarjeta);
-        }
-        
-        public int EliminarTarjeta(int codigo) {
-            return base.Channel.EliminarTarjeta(codigo);
-        }
-        
-        public System.Threading.Tasks.Task<int> EliminarTarjetaAsync(int codigo) {
-            return base.Channel.EliminarTarjetaAsync(codigo);
+        public System.Threading.Tasks.Task<TAGO_Pruebas.ClienteService.Cliente> ConsultarClientexEmailAsync(string Email) {
+            return base.Channel.ConsultarClientexEmailAsync(Email);
         }
     }
 }

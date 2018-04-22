@@ -4,28 +4,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Celular" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Tarjetas" nillable="true" type="tns:ArrayOfTarjeta" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Cliente" nillable="true" type="tns:Cliente" />
-  <xs:complexType name="ArrayOfTarjeta">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tarjeta" nillable="true" type="tns:Tarjeta" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfTarjeta" nillable="true" type="tns:ArrayOfTarjeta" />
-  <xs:complexType name="Tarjeta">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CVV" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Cliente" type="xs:int" />
-      <xs:element minOccurs="0" name="Codigo" type="xs:int" />
-      <xs:element minOccurs="0" name="FechaVencimiento" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Numero" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Tarjeta" nillable="true" type="tns:Tarjeta" />
 </xs:schema>
