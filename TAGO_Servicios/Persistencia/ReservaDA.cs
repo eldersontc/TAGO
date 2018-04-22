@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using TAGO_Servicios.Dominio;
+using TAGO_Servicios.Utilitarios;
 
 namespace TAGO_Servicios.Persistencia
 {
@@ -35,7 +36,10 @@ namespace TAGO_Servicios.Persistencia
                     
                 }
             }
+
             entidadCreada = Obtener(iddevuelto);
+            Cliente cliente = new ClienteDA().Obtener(entidadCreada.IdCliente.ToString());
+            SenderSMS.EnviarSMS(cliente.Celular,string.Format("Estimado cliente {0}, su reserva ha sido registrada con exito",cliente.Nombres));
             return entidadCreada;
         }
 

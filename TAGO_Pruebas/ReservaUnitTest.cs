@@ -12,7 +12,7 @@ namespace TAGO_Pruebas
             ReservaService.ReservaServiceClient proxy = new ReservaService.ReservaServiceClient();
             ReservaService.Reserva entidad = proxy.RegistrarReserva(new ReservaService.Reserva
             {
-                IdCliente = 10,
+                IdCliente = 47059811,
                 FechaRecojoCliente = "22/04/2018",
                 Origen = "Lima",
                 Destino = "UPC, Villa",
@@ -21,7 +21,7 @@ namespace TAGO_Pruebas
                 FechaRegistroReserva = "22/04/2018",
                 Placa= "XQ-8208"
             });
-            Assert.AreEqual(10, entidad.IdCliente);
+            Assert.AreEqual(47059811, entidad.IdCliente);
             //Assert.AreEqual("22/04/2018", entidad.FechaRecojoCliente);
             Assert.AreEqual("Lima", entidad.Origen);
             Assert.AreEqual("UPC, Villa", entidad.Destino);
