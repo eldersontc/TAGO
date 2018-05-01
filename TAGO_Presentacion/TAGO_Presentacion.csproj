@@ -163,6 +163,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\VISANETService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -190,6 +195,13 @@
     <None Include="Service References\ClienteService\configuration91.svcinfo" />
     <None Include="Service References\ClienteService\configuration.svcinfo" />
     <None Include="Service References\ClienteService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\VISANETService\ServiceVISANET.disco" />
+    <None Include="Service References\VISANETService\configuration91.svcinfo" />
+    <None Include="Service References\VISANETService\configuration.svcinfo" />
+    <None Include="Service References\VISANETService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -221,6 +233,13 @@
     <Content Include="Views\Manage\Mapa.cshtml" />
     <Content Include="Views\Auth\Registro.cshtml" />
     <Content Include="Views\Manage\Elegir.cshtml" />
+    <None Include="Service References\VISANETService\ServiceVISANET.wsdl" />
+    <None Include="Service References\VISANETService\ServiceVISANET.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VISANETService\ServiceVISANET1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -238,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ClienteService\" />
+    <WCFMetadataStorage Include="Service References\VISANETService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,6 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAGO_Presentacion", "TAGO_Presentacion\TAGO_Presentacion.csproj", "{CFB72398-5048-472E-9858-B166C0DB3BEF}"
 	ProjectSection(ProjectDependencies) = postProject
+		{6AD4603E-677A-48B9-84BA-847333DD0E4B} = {6AD4603E-677A-48B9-84BA-847333DD0E4B}
 		{FE016D82-B23B-4E8B-A54F-E7AEAF8BD088} = {FE016D82-B23B-4E8B-A54F-E7AEAF8BD088}
 	EndProjectSection
 EndProject
