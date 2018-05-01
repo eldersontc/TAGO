@@ -18,11 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAGO_Pruebas", "TAGO_Prueba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAGO_VISANET", "TAGO_VISANET\TAGO_VISANET.csproj", "{6AD4603E-677A-48B9-84BA-847333DD0E4B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archivos", "Archivos", "{2A7B2EAD-C27A-4901-88CA-E4C899124389}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bases de datos", "Bases de datos", "{AAD32C39-AE54-4319-866A-4D9C491A6C7D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9025DAB0-CFDA-49EE-BA4E-FE1BB7BBD39F}"
 	ProjectSection(SolutionItems) = preProject
-		..\PAGO CON VISA\Proyecto\DB_VISA.sql = ..\PAGO CON VISA\Proyecto\DB_VISA.sql
+		Archivos\DB_VISA.sql = Archivos\DB_VISA.sql
 	EndProjectSection
 EndProject
 Global
@@ -50,8 +48,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{AAD32C39-AE54-4319-866A-4D9C491A6C7D} = {2A7B2EAD-C27A-4901-88CA-E4C899124389}
 	EndGlobalSection
 EndGlobal
