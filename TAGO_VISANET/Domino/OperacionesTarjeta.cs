@@ -25,5 +25,6 @@ namespace TAGO_VISANET.Domino
         public string CorreoElectronico { get; set; }
         [DataMember]
         public decimal ImporteOperacion { get; set; }
+
     }
 }
