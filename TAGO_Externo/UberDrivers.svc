@@ -1,0 +1,7 @@
+﻿<%@ ServiceHost 
+    Language="C#" 
+    Debug="true" 
+    Service="TAGO_Externo.UberDrivers" 
+    CodeBehind="UberDrivers.svc.cs" 
+    Factory="System.ServiceModel.Activation.WebServiceHostFactory"
+%>
