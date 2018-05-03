@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TAGO_Externo.CabifyChoferes" CodeBehind="CabifyChoferes.svc.cs" Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>
