@@ -19,11 +19,6 @@ namespace TAGO_VISANET.Persistencia
         {
             this.OperacionesTarjeta.IdOperacion = DataAccess.getInstance().ExecuteStoreProcedureInsertUpdateDelete("Usp_Botica_Tb_OperacionesTarjeta_Insert",
                 this.OperacionesTarjeta.Numero,
-                this.OperacionesTarjeta.Vencimiento,
-                this.OperacionesTarjeta.CodigoVerificacion,
-                this.OperacionesTarjeta.Nombre,
-                this.OperacionesTarjeta.Apellido,
-                this.OperacionesTarjeta.CorreoElectronico,
                 this.OperacionesTarjeta.ImporteOperacion);
             return this.OperacionesTarjeta.IdOperacion;
         }

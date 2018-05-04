@@ -14,8 +14,14 @@ namespace TAGO_VISANET
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceVISANET.svc or ServiceVISANET.svc.cs at the Solution Explorer and start debugging.
     public class ServiceVISANET : IServiceVISANET
     {
+        public Tarjeta obtenerTarjeta(string Numero)
+        {
+            return new TarjetaDAO(new Tarjeta() { Numero = Numero }).Seleccionar();
+        }
+
         public int registrarPagoVISANET(string Numero, string Vencimiento, string CodigoVerificacion, string Nombre, string Apellido, string CorreoElectronico, decimal ImporteOperacion)
         {
+            Tarjeta objTarjeta = this.obtenerTarjeta(Numero);
             if (string.IsNullOrEmpty(Numero))
             {
                 throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
@@ -24,44 +30,12 @@ namespace TAGO_VISANET
                     Descripcion = "Número de tarjeta incorrecto."
                 }, new FaultReason("Error al registrar el pago."));
             }
-            else if (string.IsNullOrEmpty(Vencimiento))
+            else if (string.IsNullOrEmpty(objTarjeta.Numero))
             {
                 throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
                 {
-                    Codigo = "002",
-                    Descripcion = "Ingresar datos del vencimiento de la tarjeta(mm/yy)"
-                }, new FaultReason("Error al registrar el pago."));
-            }
-            else if (string.IsNullOrEmpty(CodigoVerificacion))
-            {
-                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
-                {
-                    Codigo = "003",
-                    Descripcion = "Ingresar el código de verificación(CVV)"
-                }, new FaultReason("Error al registrar el pago."));
-            }
-            else if (string.IsNullOrEmpty(Nombre))
-            {
-                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
-                {
-                    Codigo = "004",
-                    Descripcion = "El Nombre es necesario"
-                }, new FaultReason("Error al registrar el pago."));
-            }
-            else if (string.IsNullOrEmpty(Apellido))
-            {
-                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
-                {
-                    Codigo = "005",
-                    Descripcion = "El Apellido necesario"
-                }, new FaultReason("Error al registrar el pago."));
-            }
-            else if (string.IsNullOrEmpty(CorreoElectronico))
-            {
-                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
-                {
-                    Codigo = "006",
-                    Descripcion = "Correco electrónico necesario"
+                    Codigo = "001",
+                    Descripcion = "Número de tarjeta incorrecto."
                 }, new FaultReason("Error al registrar el pago."));
             }
             else if (ImporteOperacion <= 0)
@@ -72,13 +46,56 @@ namespace TAGO_VISANET
                     Descripcion = "Importe incorrecto"
                 }, new FaultReason("Error al registrar el pago."));
             }
+            else if (objTarjeta.ImporteSaldo < ImporteOperacion)
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "001",
+                    Descripcion = "Saldo insuficiente"
+                }, new FaultReason("Error al registrar el pago."));
+            }
+            else if (string.IsNullOrEmpty(Vencimiento) || objTarjeta.Vencimiento != Vencimiento)
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "002",
+                    Descripcion = "datos de la fecha vencimiento de la tarjeta son incorrectos"
+                }, new FaultReason("Error al registrar el pago."));
+            }
+            else if (string.IsNullOrEmpty(CodigoVerificacion) || objTarjeta.CodigoVerificacion != CodigoVerificacion)
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "003",
+                    Descripcion = "El código de verificación(CVV) es inválido"
+                }, new FaultReason("Error al registrar el pago."));
+            }
+            else if (string.IsNullOrEmpty(Nombre) || objTarjeta.Nombre != Nombre)
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "004",
+                    Descripcion = "El Nombre es incorrecto"
+                }, new FaultReason("Error al registrar el pago."));
+            }
+            else if (string.IsNullOrEmpty(Apellido) || objTarjeta.Apellido != Apellido)
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "005",
+                    Descripcion = "El Apellido es incorrecto"
+                }, new FaultReason("Error al registrar el pago."));
+            }
+            else if (string.IsNullOrEmpty(CorreoElectronico))
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "006",
+                    Descripcion = "Correco electrónico necesario"
+                }, new FaultReason("Error al registrar el pago."));
+            }
             OperacionesTarjeta objOperacion = new OperacionesTarjeta();
             objOperacion.Numero = Numero;
-            objOperacion.Vencimiento = Vencimiento;
-            objOperacion.CodigoVerificacion = CodigoVerificacion;
-            objOperacion.Nombre = Nombre;
-            objOperacion.Apellido = Apellido;
-            objOperacion.CorreoElectronico = CorreoElectronico;
             objOperacion.ImporteOperacion = ImporteOperacion;
             OperacionesTarjetaDAO objDAO = new OperacionesTarjetaDAO(objOperacion);
             try

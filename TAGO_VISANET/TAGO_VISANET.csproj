@@ -96,10 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domino\OperacionesTarjeta.cs" />
+    <Compile Include="Domino\Tarjeta.cs" />
     <Compile Include="Errores\AdministradorExcepciones.cs" />
     <Compile Include="IServiceVISANET.cs" />
     <Compile Include="Persistencia\DataAccess.cs" />
     <Compile Include="Persistencia\OperacionesTarjetaDAO.cs" />
+    <Compile Include="Persistencia\TarjetaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceVISANET.svc.cs">
       <DependentUpon>ServiceVISANET.svc</DependentUpon>
