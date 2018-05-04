@@ -18,9 +18,9 @@ namespace TAGO_Externo
     {
         private UberDriverDA uberDA = new UberDriverDA();
 
-        public List<UberDriver> ListTaxiUber()
+        public List<UberDriver> ListTaxiUber(string OLatitud, string OLongitud, string DLatitud, string DLongitud)
         {
-            if (uberDA.ListTaxiUber() == null)
+            if (uberDA.ListTaxiUber(OLatitud, OLongitud, DLatitud, DLongitud) == null)
             {
                 throw new FaultException<NotFoundException>(
                   new NotFoundException()
@@ -30,12 +30,11 @@ namespace TAGO_Externo
                   },
                   new FaultReason("Error en el proceso de listar taxis"));
             }
-            return uberDA.ListTaxiUber();
+            return uberDA.ListTaxiUber(OLatitud, OLongitud, DLatitud, DLongitud);
         }
         public UberDriver GetUberDriver(string placa)
         {
             return uberDA.GetUberDriver(placa);
         }
-
     }
 }

@@ -10,19 +10,23 @@ namespace TAGO_Externo.Persistencia
 {
     public class UberDriverDA
     {
-        private string cadenaConexion = ConfigurationManager.ConnectionStrings["TAGO"].ConnectionString;
+        private string cadenaConexion = ConfigurationManager.ConnectionStrings["DB_TAXI_EXTERNO"].ConnectionString;
 
-        public List<UberDriver> ListTaxiUber()
+        public List<UberDriver> ListTaxiUber(string OLatitud, string OLongitud, string DLatitud, string DLongitud)
         {
             List<UberDriver> UbersFound = new List<UberDriver>();
             UberDriver UberFound = null;
 
-            string strCmd = "SELECT * FROM UberDriver";
+            string strCmd = "SELECT * FROM UberDriver WHERE OLatitud = @LatitudOrigen and OLongitud = @LongitudOrigen and DLatitud = @LatitudDestino and  DLongitud = @LongitudDestino ";
             using (SqlConnection sqlCnx = new SqlConnection(cadenaConexion))
             {
                 sqlCnx.Open();
                 using (SqlCommand sqlCmd = new SqlCommand(strCmd, sqlCnx))
                 {
+                    sqlCmd.Parameters.Add(new SqlParameter("@LatitudOrigen", OLatitud));
+                    sqlCmd.Parameters.Add(new SqlParameter("@LongitudOrigen", OLongitud));
+                    sqlCmd.Parameters.Add(new SqlParameter("@LatitudDestino", DLatitud));
+                    sqlCmd.Parameters.Add(new SqlParameter("@LongitudDestino", DLongitud));
                     using (SqlDataReader sqlDR = sqlCmd.ExecuteReader())
                     {
                         while (sqlDR.Read())
@@ -35,7 +39,11 @@ namespace TAGO_Externo.Persistencia
                                 UCelular = (int)sqlDR["Celular"],
                                 UModeloAuto = (string)sqlDR["ModeloAuto"],
                                 UReputacion = (int)sqlDR["Reputacion"],
-                                UFechaIngreso = (DateTime)sqlDR["FechaIngreso"]
+                                UFechaIngreso = (DateTime)sqlDR["FechaIngreso"],
+                                ULatitudOrigen = (string)sqlDR["LatitudOrigen"],
+                                ULongitudOrigen = (string)sqlDR["LongitudOrigen"],
+                                ULatitudDestino = (string)sqlDR["LatitudDestino"],
+                                ULongitudDestino = (string)sqlDR["LongitudDestino"]
                             };
                             UbersFound.Add(UberFound);
                         }
@@ -67,7 +75,11 @@ namespace TAGO_Externo.Persistencia
                                 UCelular = (int)sqlDR["Celular"],
                                 UModeloAuto = (string)sqlDR["ModeloAuto"],
                                 UReputacion = (int)sqlDR["Reputacion"],
-                                UFechaIngreso = (DateTime)sqlDR["FechaIngreso"]
+                                UFechaIngreso = (DateTime)sqlDR["FechaIngreso"],
+                                ULatitudOrigen = (string)sqlDR["LatitudOrigen"],
+                                ULongitudOrigen = (string)sqlDR["LongitudOrigen"],
+                                ULatitudDestino = (string)sqlDR["LatitudDestino"],
+                                ULongitudDestino = (string)sqlDR["LongitudDestino"]
                             };
                         }
                     }
