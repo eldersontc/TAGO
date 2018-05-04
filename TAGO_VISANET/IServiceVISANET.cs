@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using TAGO_VISANET.Domino;
 
 namespace TAGO_VISANET
 {
@@ -11,6 +12,8 @@ namespace TAGO_VISANET
     [ServiceContract]
     public interface IServiceVISANET
     {
+        [OperationContract]
+        Tarjeta obtenerTarjeta(string Numero);
         [OperationContract]
         int registrarPagoVISANET(string Numero, string Vencimiento, string CodigoVerificacion, string Nombre, string Apellido, string CorreoElectronico, decimal ImporteOperacion);
     }
