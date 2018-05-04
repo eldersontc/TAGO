@@ -14,6 +14,9 @@ namespace TAGO_Presentacion
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery.base64").Include(
+                        "~/Scripts/jquery.base64.js"));
+
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // preparado para la producción y podrá utilizar la herramienta de compilación disponible en http://modernizr.com para seleccionar solo las pruebas que necesite.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

@@ -72,13 +72,17 @@
 
     function initAutocomplete() {
 
-        var pos = {
-            lat: -12.0551637,
-            lng: -77.0802425
+        var i = {
+            latlng: {
+                lat: -12.0551637,
+                lng: -77.0802425
+            }
         };
 
+        var f = {};
+
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: pos,
+            center: i.latlng,
             zoom: 17,
             mapTypeId: 'roadmap',
             mapTypeControl: false
@@ -90,19 +94,34 @@
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                pos = {
+                i.latlng = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
 
+                var geocoder = new google.maps.Geocoder;
+
+                geocoder.geocode({ 'location': i.latlng }, function (results, status) {
+                    if (status === 'OK') {
+                        if (results[1]) {
+                            i.name = results[1].formatted_address;
+                        } else {
+                            console.log('No results found');
+                        }
+                    } else {
+                        console.log('Geocoder failed due to: ' + status);
+                    }
+                });
+
                 var mk = new google.maps.Marker({
                     map: map,
-                    position: pos
+                    position: i.latlng
                 });
 
                 infowindow.open(map, mk);
 
-                map.setCenter(pos);
+                map.setCenter(i.latlng);
+
             }, function () {
                 console.log("error..");
             });
@@ -139,7 +158,11 @@
                     console.log("Returned place contains no geometry");
                     return;
                 }
-
+                console.log(place);
+                f = {
+                    name: $('#pac-input').val(),
+                    latlng: place.geometry.location
+                };
                 markers.push(new google.maps.Marker({
                     map: map,
                     title: place.name,
@@ -163,7 +186,9 @@
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(button);
 
         button.addEventListener("click", function () {
-            window.location.href = '@Url.Action("Elegir", "Manage")' + '?origen=origen&destino=destino'
+            var o = i.name + "|" + i.latlng.lat + "|" + i.latlng.lng;
+            var d = f.name + "|" + f.latlng.lat() + "|" + f.latlng.lng();
+            window.location.href = '@Url.Action("Elegir")' + '?o=' + $.base64.encode(o) + '&d=' + $.base64.encode(d)
         });
 
         var toggle = $('#menu-toggle')[0];
