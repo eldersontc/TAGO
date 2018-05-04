@@ -18,7 +18,7 @@ namespace TAGO_VISANET.Persistencia
 
         public Tarjeta Seleccionar()
         {
-            DataTable objDataTable = DataAccess.getInstance().ExecuteStoreProcedureSelect("Usp_Botica_Tb_OperacionesTarjeta_Insert", this.Tarjeta.Numero);
+            DataTable objDataTable = DataAccess.getInstance().ExecuteStoreProcedureSelect("Usp_Botica_Tb_Tarjeta_Select", this.Tarjeta.Numero);
             this.Tarjeta = new Tarjeta();
             foreach (DataRow objDataRow in objDataTable.Rows)
             {
