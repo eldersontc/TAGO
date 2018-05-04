@@ -16,7 +16,7 @@ namespace TAGO_Externo
     {
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "UberDrivers", ResponseFormat = WebMessageFormat.Json)]
-        List<UberDriver> ListTaxiUber();
+        List<UberDriver> ListTaxiUber(string OLatitud, string OLongitud, string DLatitud, string DLongitud);
 
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "UberDrivers/{placa}", ResponseFormat = WebMessageFormat.Json)]
