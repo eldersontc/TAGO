@@ -12,11 +12,16 @@ CREATE TABLE [dbo].[UberDriver](
 			[ModeloAuto] [varchar](50) NULL,
 			[Reputacion] [int] NULL,
 			[FechaRegistro] datetime NULL,
+			[LatitudOrigen]  [varchar](50) NULL,
+			[LongitudOrigen]  [varchar](50) NULL,
+			[LatitudDestino]  [varchar](50) NULL,
+			[LongitudDestino]  [varchar](50) NULL,
  CONSTRAINT [PK_UberDriver] PRIMARY KEY CLUSTERED 
 (
 	[Placa] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
 CREATE TABLE [dbo].[UberAvailable](
 			[Placa] [varchar](7) NOT NULL,
 			[MarcaAuto] [varchar](50) NULL,
