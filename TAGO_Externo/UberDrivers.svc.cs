@@ -17,7 +17,6 @@ namespace TAGO_Externo
     public class UberDrivers : IUberDrivers
     {
         private UberDriverDA uberDA = new UberDriverDA();
-
         public List<UberDriver> ListTaxiUber()
         {
             if (uberDA.ListTaxiUber() == null)
