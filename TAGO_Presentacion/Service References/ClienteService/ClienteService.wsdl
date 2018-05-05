@@ -25,6 +25,30 @@
   <wsdl:message name="IClienteService_ConsultarClientexEmail_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConsultarClientexEmailResponse" />
   </wsdl:message>
+  <wsdl:message name="IClienteService_RegistrarTarjeta_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarTarjeta" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_RegistrarTarjeta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarTarjetaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_ModificarTarjeta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarTarjeta" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_ModificarTarjeta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarTarjetaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_EliminarTarjeta_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarTarjeta" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_EliminarTarjeta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarTarjetaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_ListarTarjetaxCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarTarjetaxCliente" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_ListarTarjetaxCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarTarjetaxClienteResponse" />
+  </wsdl:message>
   <wsdl:portType name="IClienteService">
     <wsdl:operation name="RegistrarCliente">
       <wsdl:input wsaw:Action="http://tempuri.org/IClienteService/RegistrarCliente" message="tns:IClienteService_RegistrarCliente_InputMessage" />
@@ -37,6 +61,22 @@
     <wsdl:operation name="ConsultarClientexEmail">
       <wsdl:input wsaw:Action="http://tempuri.org/IClienteService/ConsultarClientexEmail" message="tns:IClienteService_ConsultarClientexEmail_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IClienteService/ConsultarClientexEmailResponse" message="tns:IClienteService_ConsultarClientexEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarTarjeta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClienteService/RegistrarTarjeta" message="tns:IClienteService_RegistrarTarjeta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClienteService/RegistrarTarjetaResponse" message="tns:IClienteService_RegistrarTarjeta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarTarjeta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClienteService/ModificarTarjeta" message="tns:IClienteService_ModificarTarjeta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClienteService/ModificarTarjetaResponse" message="tns:IClienteService_ModificarTarjeta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarTarjeta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClienteService/EliminarTarjeta" message="tns:IClienteService_EliminarTarjeta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClienteService/EliminarTarjetaResponse" message="tns:IClienteService_EliminarTarjeta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarTarjetaxCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClienteService/ListarTarjetaxCliente" message="tns:IClienteService_ListarTarjetaxCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClienteService/ListarTarjetaxClienteResponse" message="tns:IClienteService_ListarTarjetaxCliente_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IClienteService" type="tns:IClienteService">
@@ -61,6 +101,42 @@
     </wsdl:operation>
     <wsdl:operation name="ConsultarClientexEmail">
       <soap:operation soapAction="http://tempuri.org/IClienteService/ConsultarClientexEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarTarjeta">
+      <soap:operation soapAction="http://tempuri.org/IClienteService/RegistrarTarjeta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarTarjeta">
+      <soap:operation soapAction="http://tempuri.org/IClienteService/ModificarTarjeta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarTarjeta">
+      <soap:operation soapAction="http://tempuri.org/IClienteService/EliminarTarjeta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarTarjetaxCliente">
+      <soap:operation soapAction="http://tempuri.org/IClienteService/ListarTarjetaxCliente" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

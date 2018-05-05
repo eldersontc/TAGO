@@ -20,9 +20,8 @@ namespace TAGO_Externo
         CabifyDisponible ObtenerCabifyDisponible(string AutoPlaca);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "CabifyDisponibles", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", UriTemplate = "CabifyDisponibles/{OLatitud}/{OLongitud}/{DLatitud}/{DLongitud}", ResponseFormat = WebMessageFormat.Json)]
         List<CabifyDisponible> ListarCabifyDisponibles(string OLatitud, string OLongitud, string DLatitud, string DLongitud);
-
-
+        
     }
 }

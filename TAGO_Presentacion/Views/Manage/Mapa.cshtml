@@ -160,7 +160,7 @@
                 }
                 console.log(place);
                 f = {
-                    name: $('#pac-input').val(),
+                    name: place.name,
                     latlng: place.geometry.location
                 };
                 markers.push(new google.maps.Marker({

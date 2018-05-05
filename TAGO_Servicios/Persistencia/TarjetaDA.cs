@@ -15,7 +15,7 @@ namespace TAGO_Servicios.Persistencia
         public Tarjeta Crear(Tarjeta tarjeta)
         {
             Tarjeta tarjetaCreada = null;
-            string sql = "INSERT INTO Tarjeta VALUES (@Cliente, @Numero, @FechaVencimiento, @CVV)";
+            string sql = "INSERT INTO Tarjeta VALUES (@Numero, @Cliente, @FechaVencimiento, @CVV)";
             using (SqlConnection cn = new SqlConnection(cadenaConexion))
             {
                 cn.Open();
@@ -67,6 +67,7 @@ namespace TAGO_Servicios.Persistencia
             string sql = "SELECT * FROM Tarjeta WHERE Cliente = @Cliente";
             using (SqlConnection cn = new SqlConnection(cadenaConexion))
             {
+                cn.Open();
                 using (SqlCommand cmd = new SqlCommand(sql, cn))
                 {
                     cmd.Parameters.Add(new SqlParameter("@Cliente", cliente));

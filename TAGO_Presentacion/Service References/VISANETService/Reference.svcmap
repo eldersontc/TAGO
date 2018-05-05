@@ -24,6 +24,7 @@
   <Metadata>
     <MetadataFile FileName="ServiceVISANET.wsdl" MetadataType="Wsdl" ID="92e3809c-a0db-4e6a-8c8c-87f3aab76980" SourceId="1" SourceUrl="http://localhost:4096/ServiceVISANET.svc?wsdl" />
     <MetadataFile FileName="ServiceVISANET.xsd" MetadataType="Schema" ID="7da014fa-67ac-4baa-91d7-b82c83ea73a7" SourceId="1" SourceUrl="http://localhost:4096/ServiceVISANET.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceVISANET2.xsd" MetadataType="Schema" ID="5eb91245-e5e5-42b7-a91b-fcb41b8ef091" SourceId="1" SourceUrl="http://localhost:4096/ServiceVISANET.svc?xsd=xsd2" />
     <MetadataFile FileName="ServiceVISANET.disco" MetadataType="Disco" ID="406ff4bd-e630-4002-8109-78e338bae147" SourceId="1" SourceUrl="http://localhost:4096/ServiceVISANET.svc?disco" />
     <MetadataFile FileName="ServiceVISANET1.xsd" MetadataType="Schema" ID="f048d2b9-5337-4b89-b7ed-2b48c113fb07" SourceId="1" SourceUrl="http://localhost:4096/ServiceVISANET.svc?xsd=xsd0" />
   </Metadata>

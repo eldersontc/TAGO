@@ -14,6 +14,7 @@ namespace TAGO_Servicios
     public class ClienteService : IClienteService
     {
         ClienteDA clienteDA = new ClienteDA();
+        TarjetaDA tarjetaDA = new TarjetaDA();
 
         public Dominio.Cliente RegistrarCliente(Dominio.Cliente cliente)
         {
@@ -28,6 +29,26 @@ namespace TAGO_Servicios
         public Dominio.Cliente ConsultarClientexEmail(string Email)
         {
             return clienteDA.ObtenerxEmail(Email);
+        }
+
+        public Tarjeta RegistrarTarjeta(Tarjeta tarjeta)
+        {
+            return tarjetaDA.Crear(tarjeta);
+        }
+
+        public Tarjeta ModificarTarjeta(Tarjeta tarjeta)
+        {
+            return tarjetaDA.Modificar(tarjeta);
+        }
+
+        public int EliminarTarjeta(string numero)
+        {
+            return tarjetaDA.Eliminar(numero);
+        }
+
+        public List<Tarjeta> ListarTarjetaxCliente(string DNI)
+        {
+            return tarjetaDA.ListarxCliente(DNI);
         }
     }
 }
