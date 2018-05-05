@@ -109,4 +109,4 @@ INSERT INTO [CabifyChofer] VALUES ('C009','Julio','Salvador Chuquipul','91738246
 INSERT INTO [CabifyChofer] VALUES ('C010','Eduardo','Huaman Huaypa','987246147','4','28/03/2017','VSP-412','Mazda','CX-5');
 
 
---select  (C.Nombres+' '+C.Apellidos) as 'Chofer', C.AutoMarca, C.AutoModelo, C.AutoPlaca, D.TiempoLlegada, D.TiempoViaje, D.Monto FROM CabifyDisponible D INNER JOIN CabifyChofer C ON D.AutoPlaca = C.AutoPlaca
+
