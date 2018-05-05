@@ -104,6 +104,7 @@
     <Compile Include="ReservaService.svc.cs">
       <DependentUpon>ReservaService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Utilitarios\AdministradorExcepciones.cs" />
     <Compile Include="Utilitarios\SenderSMS.cs" />
   </ItemGroup>
   <ItemGroup>

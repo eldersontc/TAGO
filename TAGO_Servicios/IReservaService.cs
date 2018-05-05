@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using TAGO_Servicios.Dominio;
+using TAGO_Servicios.Utilitarios;
 
 namespace TAGO_Servicios
 {
@@ -12,9 +13,11 @@ namespace TAGO_Servicios
     [ServiceContract]
     public interface IReservaService
     {
+        [FaultContract(typeof(AdministradorExcepciones))]
         [OperationContract]
         Reserva RegistrarReserva(Reserva entidad);
 
+        [FaultContract(typeof(AdministradorExcepciones))]
         [OperationContract]
         Reserva CancelarReserva(Reserva entidad);
     }
