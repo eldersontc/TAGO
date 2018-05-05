@@ -20,6 +20,6 @@ namespace TAGO_Externo
 
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "UbersAvailable/{placa}", ResponseFormat = WebMessageFormat.Json)]
-        UberAvailable GetUberDriverAvailable(string placa);
+        UberAvailable GetUberAvailable(string placa);
     }
 }
