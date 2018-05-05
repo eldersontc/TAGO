@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,11 +16,11 @@ namespace TAGO_Externo
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione UberDrivers.svc o UberDrivers.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class UberDrivers : IUberDrivers
     {
-        private UberDriverDA uberDA = new UberDriverDA();
+        private UberDAO uberDA = new UberDAO();
 
-        public List<UberDriver> ListTaxiUber(string OLatitud, string OLongitud, string DLatitud, string DLongitud)
+        public List<UberDriver> ListTaxiUber()
         {
-            if (uberDA.ListTaxiUber(OLatitud, OLongitud, DLatitud, DLongitud) == null)
+            if (uberDA.ListTaxiUber() == null)
             {
                 throw new FaultException<NotFoundException>(
                   new NotFoundException()
@@ -30,7 +30,7 @@ namespace TAGO_Externo
                   },
                   new FaultReason("Error en el proceso de listar taxis"));
             }
-            return uberDA.ListTaxiUber(OLatitud, OLongitud, DLatitud, DLongitud);
+            return uberDA.ListTaxiUber();
         }
         public UberDriver GetUberDriver(string placa)
         {

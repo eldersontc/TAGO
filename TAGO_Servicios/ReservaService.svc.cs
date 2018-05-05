@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using TAGO_Servicios.Dominio;
 using TAGO_Servicios.Persistencia;
+using TAGO_Servicios.Utilitarios;
 
 namespace TAGO_Servicios
 {
@@ -21,6 +22,23 @@ namespace TAGO_Servicios
 
         public Reserva RegistrarReserva(Reserva entidad)
         {
+            if (entidad.IdCliente==0)
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "0100",
+                    Descripcion = "Tiene que existir un cliente."
+                }, new FaultReason("Error al registrar la reserva."));
+            }
+
+            if (string.IsNullOrEmpty(entidad.Placa))
+            {
+                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                {
+                    Codigo = "0101",
+                    Descripcion = "La placa no se está enviando en el registro."
+                }, new FaultReason("Error al registrar la reserva."));
+            }
             return entidadDA.Crear(entidad);
         }
     }

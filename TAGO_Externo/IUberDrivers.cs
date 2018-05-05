@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -15,8 +15,8 @@ namespace TAGO_Externo
     public interface IUberDrivers
     {
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "UberDrivers/{OLatitud}/{OLongitud}/{DLatitud}/{DLongitud}", ResponseFormat = WebMessageFormat.Json)]
-        List<UberDriver> ListTaxiUber(string OLatitud, string OLongitud, string DLatitud, string DLongitud);
+        [WebInvoke(Method = "GET", UriTemplate = "UberDrivers", ResponseFormat = WebMessageFormat.Json)]
+        List<UberDriver> ListTaxiUber();
 
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "UberDrivers/{placa}", ResponseFormat = WebMessageFormat.Json)]

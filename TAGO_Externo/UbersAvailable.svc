@@ -1,0 +1,7 @@
+<%@ ServiceHost 
+    Language="C#" 
+    Debug="true" 
+    Service="TAGO_Externo.UbersAvailable" 
+    CodeBehind="UbersAvailable.svc.cs" 
+    Factory="System.ServiceModel.Activation.WebServiceHostFactory"
+%>
