@@ -43,4 +43,60 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RegistrarTarjeta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TAGO_Servicios.Dominio" minOccurs="0" name="tarjeta" nillable="true" type="q6:Tarjeta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarTarjetaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TAGO_Servicios.Dominio" minOccurs="0" name="RegistrarTarjetaResult" nillable="true" type="q7:Tarjeta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarTarjeta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TAGO_Servicios.Dominio" minOccurs="0" name="tarjeta" nillable="true" type="q8:Tarjeta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarTarjetaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TAGO_Servicios.Dominio" minOccurs="0" name="ModificarTarjetaResult" nillable="true" type="q9:Tarjeta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarTarjeta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="numero" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarTarjetaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EliminarTarjetaResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarTarjetaxCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarTarjetaxClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TAGO_Servicios.Dominio" minOccurs="0" name="ListarTarjetaxClienteResult" nillable="true" type="q10:ArrayOfTarjeta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

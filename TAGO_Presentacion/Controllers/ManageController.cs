@@ -8,23 +8,38 @@ using TAGO_Presentacion.Models;
 
 namespace TAGO_Presentacion.Controllers
 {
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         public ActionResult Mapa()
         {
-            //ViewBag.NombreCliente = ((ClienteService.Cliente)Session["clienteLogueado"]).Nombres;
+            if (SessionExpirada())
+                return RetornarLogin();
+
+            ViewBag.NombreCliente = ObtenerCliente().Nombres;
             return View();
         }
 
         public ActionResult Elegir(string o, string d)
         {
+            if (SessionExpirada())
+                return RetornarLogin();
+
+            ViewBag.NombreCliente = ObtenerCliente().Nombres;
+
             string i = Encoding.UTF8.GetString(Convert.FromBase64String(o));
             string f = Encoding.UTF8.GetString(Convert.FromBase64String(d));
             string[] arri = i.Split('|');
             string[] arrf = f.Split('|');
-            ViewBag.PO = arri[0];
-            ViewBag.PD = arrf[0];
-            //ViewBag.NombreCliente = ((ClienteService.Cliente)Session["clienteLogueado"]).Nombres;
+            ViewBag.Origen = arri[0];
+            ViewBag.Destino = arrf[0];
+            
+            //Se gudarla las ubicaciones en la sesion.
+            AsignarReserva(new ReservaService.Reserva
+            {
+                Origen = arri[0],
+                Destino = arrf[0],
+            });
+
             List<CandidatoModel> candidatos = new List<CandidatoModel>();
             candidatos.Add(new CandidatoModel {
                 Proveedor = "UBER",
@@ -48,8 +63,17 @@ namespace TAGO_Presentacion.Controllers
         
         public ActionResult Pagar(string proveedor, string placa)
         {
+            if (SessionExpirada())
+                return RetornarLogin();
+
+            ReservaService.Reserva reseva = ObtenerReserva();
+            reseva.Placa = placa;
             
-            return View();
+            AsignarReserva(reseva);
+
+            ClienteService.ClienteServiceClient proxy = new ClienteService.ClienteServiceClient();
+            ClienteService.Tarjeta[] tarjetas = proxy.ListarTarjetaxCliente(ObtenerCliente().DNI);
+            return View(tarjetas);
         }
     }
 }

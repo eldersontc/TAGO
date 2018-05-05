@@ -138,6 +138,99 @@ namespace TAGO_Presentacion.ClienteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Tarjeta", Namespace="http://schemas.datacontract.org/2004/07/TAGO_Servicios.Dominio")]
+    [System.SerializableAttribute()]
+    public partial class Tarjeta : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CVVField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FechaVencimientoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumeroField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CVV {
+            get {
+                return this.CVVField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CVVField, value) != true)) {
+                    this.CVVField = value;
+                    this.RaisePropertyChanged("CVV");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Cliente {
+            get {
+                return this.ClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
+                    this.ClienteField = value;
+                    this.RaisePropertyChanged("Cliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FechaVencimiento {
+            get {
+                return this.FechaVencimientoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FechaVencimientoField, value) != true)) {
+                    this.FechaVencimientoField = value;
+                    this.RaisePropertyChanged("FechaVencimiento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Numero {
+            get {
+                return this.NumeroField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroField, value) != true)) {
+                    this.NumeroField = value;
+                    this.RaisePropertyChanged("Numero");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClienteService.IClienteService")]
     public interface IClienteService {
@@ -159,6 +252,30 @@ namespace TAGO_Presentacion.ClienteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ConsultarClientexEmail", ReplyAction="http://tempuri.org/IClienteService/ConsultarClientexEmailResponse")]
         System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Cliente> ConsultarClientexEmailAsync(string Email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/RegistrarTarjeta", ReplyAction="http://tempuri.org/IClienteService/RegistrarTarjetaResponse")]
+        TAGO_Presentacion.ClienteService.Tarjeta RegistrarTarjeta(TAGO_Presentacion.ClienteService.Tarjeta tarjeta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/RegistrarTarjeta", ReplyAction="http://tempuri.org/IClienteService/RegistrarTarjetaResponse")]
+        System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Tarjeta> RegistrarTarjetaAsync(TAGO_Presentacion.ClienteService.Tarjeta tarjeta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ModificarTarjeta", ReplyAction="http://tempuri.org/IClienteService/ModificarTarjetaResponse")]
+        TAGO_Presentacion.ClienteService.Tarjeta ModificarTarjeta(TAGO_Presentacion.ClienteService.Tarjeta tarjeta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ModificarTarjeta", ReplyAction="http://tempuri.org/IClienteService/ModificarTarjetaResponse")]
+        System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Tarjeta> ModificarTarjetaAsync(TAGO_Presentacion.ClienteService.Tarjeta tarjeta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/EliminarTarjeta", ReplyAction="http://tempuri.org/IClienteService/EliminarTarjetaResponse")]
+        int EliminarTarjeta(string numero);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/EliminarTarjeta", ReplyAction="http://tempuri.org/IClienteService/EliminarTarjetaResponse")]
+        System.Threading.Tasks.Task<int> EliminarTarjetaAsync(string numero);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ListarTarjetaxCliente", ReplyAction="http://tempuri.org/IClienteService/ListarTarjetaxClienteResponse")]
+        TAGO_Presentacion.ClienteService.Tarjeta[] ListarTarjetaxCliente(string DNI);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClienteService/ListarTarjetaxCliente", ReplyAction="http://tempuri.org/IClienteService/ListarTarjetaxClienteResponse")]
+        System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Tarjeta[]> ListarTarjetaxClienteAsync(string DNI);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -210,6 +327,38 @@ namespace TAGO_Presentacion.ClienteService {
         
         public System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Cliente> ConsultarClientexEmailAsync(string Email) {
             return base.Channel.ConsultarClientexEmailAsync(Email);
+        }
+        
+        public TAGO_Presentacion.ClienteService.Tarjeta RegistrarTarjeta(TAGO_Presentacion.ClienteService.Tarjeta tarjeta) {
+            return base.Channel.RegistrarTarjeta(tarjeta);
+        }
+        
+        public System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Tarjeta> RegistrarTarjetaAsync(TAGO_Presentacion.ClienteService.Tarjeta tarjeta) {
+            return base.Channel.RegistrarTarjetaAsync(tarjeta);
+        }
+        
+        public TAGO_Presentacion.ClienteService.Tarjeta ModificarTarjeta(TAGO_Presentacion.ClienteService.Tarjeta tarjeta) {
+            return base.Channel.ModificarTarjeta(tarjeta);
+        }
+        
+        public System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Tarjeta> ModificarTarjetaAsync(TAGO_Presentacion.ClienteService.Tarjeta tarjeta) {
+            return base.Channel.ModificarTarjetaAsync(tarjeta);
+        }
+        
+        public int EliminarTarjeta(string numero) {
+            return base.Channel.EliminarTarjeta(numero);
+        }
+        
+        public System.Threading.Tasks.Task<int> EliminarTarjetaAsync(string numero) {
+            return base.Channel.EliminarTarjetaAsync(numero);
+        }
+        
+        public TAGO_Presentacion.ClienteService.Tarjeta[] ListarTarjetaxCliente(string DNI) {
+            return base.Channel.ListarTarjetaxCliente(DNI);
+        }
+        
+        public System.Threading.Tasks.Task<TAGO_Presentacion.ClienteService.Tarjeta[]> ListarTarjetaxClienteAsync(string DNI) {
+            return base.Channel.ListarTarjetaxClienteAsync(DNI);
         }
     }
 }

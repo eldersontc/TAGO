@@ -7,7 +7,7 @@ using TAGO_Presentacion.Models;
 
 namespace TAGO_Presentacion.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         public ActionResult Login()
         {
@@ -23,7 +23,7 @@ namespace TAGO_Presentacion.Controllers
                 ClienteService.Cliente cliente = proxy.ConsultarClientexEmail(model.Email);
                 if (cliente != null && cliente.Password.Equals(model.Password))
                 {
-                    Session["clienteLogueado"] = cliente;
+                    AsignarCliente(cliente);
                     return RedirectToAction("Mapa", "Manage");
                 }
                 ModelState.AddModelError("", "El nombre de usuario o la contraseña especificados son incorrectos.");
@@ -54,7 +54,6 @@ namespace TAGO_Presentacion.Controllers
                         Email = model.Email,
                         Password = model.Password
                     });
-                    Session["clienteLogueado"] = cliente;
                     ViewBag.exito = true;
                     return View(model);
                 }

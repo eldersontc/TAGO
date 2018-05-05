@@ -151,6 +151,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -160,6 +161,11 @@
     <Compile Include="Models\RegistroModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ClienteService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ReservaService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -176,7 +182,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\cabify.png" />
     <Content Include="Images\logo.jpg" />
+    <Content Include="Images\uber.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -200,10 +208,33 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Service References\ClienteService\TAGO_Presentacion.ClienteService.Tarjeta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ReservaService\ReservaService.wsdl" />
+    <None Include="Service References\ReservaService\ReservaService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReservaService\ReservaService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReservaService\ReservaService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\ReservaService\TAGO_Presentacion.ReservaService.Reserva.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\VISANETService\ServiceVISANET.disco" />
     <None Include="Service References\VISANETService\configuration91.svcinfo" />
     <None Include="Service References\VISANETService\configuration.svcinfo" />
     <None Include="Service References\VISANETService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ReservaService\ReservaService.disco" />
+    <None Include="Service References\ReservaService\configuration91.svcinfo" />
+    <None Include="Service References\ReservaService\configuration.svcinfo" />
+    <None Include="Service References\ReservaService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -243,6 +274,12 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Manage\Pagar.cshtml" />
+    <None Include="Service References\VISANETService\ServiceVISANET2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\VISANETService\TAGO_Presentacion.VISANETService.Tarjeta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -260,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ClienteService\" />
+    <WCFMetadataStorage Include="Service References\ReservaService\" />
     <WCFMetadataStorage Include="Service References\VISANETService\" />
   </ItemGroup>
   <PropertyGroup>

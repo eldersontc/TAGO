@@ -20,5 +20,17 @@ namespace TAGO_Servicios
 
         [OperationContract]
         Cliente ConsultarClientexEmail(string Email);
+
+        [OperationContract]
+        Tarjeta RegistrarTarjeta(Tarjeta tarjeta);
+
+        [OperationContract]
+        Tarjeta ModificarTarjeta(Tarjeta tarjeta);
+
+        [OperationContract]
+        int EliminarTarjeta(string numero);
+
+        [OperationContract]
+        List<Tarjeta> ListarTarjetaxCliente(string DNI);
     }
 }
