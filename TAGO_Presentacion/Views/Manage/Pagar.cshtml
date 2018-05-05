@@ -1,11 +1,76 @@
-﻿<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+﻿@model TAGO_Presentacion.Models.ReservaModel
+
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
     <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i> TAGO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <span class="navbar-brand"><i class="fas fa-location-arrow"></i> @ViewBag.PD</span>
+            <span class="navbar-brand"><i class="fas fa-credit-card"></i> Procesar Pago</span>
         </div>
     </div>
 </nav>
+<br />
+<div class="col-md-10">
+    @{
+        if (Model.Tarjetas.Length == 0)
+        {
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-info-circle"></i> Usted no tiene tarjetas registradas. Para registrar haga clic @Html.ActionLink("Aqui", "Tarjeta", "Manage")
+            </div>
+        }
+        else
+        {
+            using (@Html.BeginForm("Pagar", "Manage",
+                    FormMethod.Post, new { }))
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><i class="fas fa-street-view"></i> Origen</label>
+                    <div class="col-sm-5">
+                        @Html.TextBoxFor(m => m.Origen, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><i class="fas fa-location-arrow"></i> Destino</label>
+                    <div class="col-sm-5">
+                        @Html.TextBoxFor(m => m.Destino, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><i class="fas fa-user-circle"></i> Conductor</label>
+                    <div class="col-sm-5">
+                        @Html.TextBoxFor(m => m.Conductor, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><i class="fas fa-car"></i> Auto/Placa</label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.AutoModelo, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.AutoPlaca, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><i class="far fa-money-bill-alt"></i> Importe</label>
+                    <div class="col-sm-5">
+                        @Html.TextBoxFor(m => m.Precio, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label"><i class="fab fa-cc-visa"></i> Tarjeta Cargo</label>
+                    <div class="col-sm-5">
+                        @Html.DropDownListFor(m => m.TarjetaSeleccionada, new SelectList(Model.Tarjetas, "Numero", "Numero"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2 col-form-label"></div>
+                    <div class="col-sm-5">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Reservar <i class="fas fa-calendar-check"></i></button>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
