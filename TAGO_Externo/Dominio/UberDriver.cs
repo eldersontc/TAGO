@@ -29,17 +29,5 @@ namespace TAGO_Externo.Dominio
 
         [DataMember]
         public DateTime UFechaIngreso { get; set; }
-
-        [DataMember]
-        public string ULatitudOrigen { get; set; }
-
-        [DataMember]
-        public string ULongitudOrigen { get; set; }
-
-        [DataMember]
-        public string ULatitudDestino { get; set; }
-
-        [DataMember]
-        public string ULongitudDestino { get; set; }
     }
 }
