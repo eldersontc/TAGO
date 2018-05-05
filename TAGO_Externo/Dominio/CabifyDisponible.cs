@@ -21,5 +21,17 @@ namespace TAGO_Externo.Dominio
         [DataMember]
         public string Monto { get; set; }
 
+        [DataMember(IsRequired = false)]
+        public string OLatitud { get; set; }
+
+        [DataMember(IsRequired = false)]
+        public string OLongitud { get; set; }
+
+        [DataMember(IsRequired = false)]
+        public string DLatitud { get; set; }
+
+        [DataMember(IsRequired = false)]
+        public string DLongitud { get; set; }
+
     }
 }

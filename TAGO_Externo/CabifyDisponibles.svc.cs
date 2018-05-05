@@ -21,9 +21,9 @@ namespace TAGO_Externo
             return cabifyDAO.ObtenerCabifyDisponible(AutoPlaca);
         }
 
-        public List<CabifyDisponible> ListarCabifyDisponibles()
+        public List<CabifyDisponible> ListarCabifyDisponibles(string OLatitud, string OLongitud, string DLatitud, string DLongitud)
         {
-            return cabifyDAO.ListarCabifyDisponibles();
+            return cabifyDAO.ListarCabifyDisponibles(OLatitud, OLongitud, DLatitud, DLongitud);
         }
     }
 }

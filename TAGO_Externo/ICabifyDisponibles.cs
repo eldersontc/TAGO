@@ -21,6 +21,8 @@ namespace TAGO_Externo
 
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "CabifyDisponibles", ResponseFormat = WebMessageFormat.Json)]
-        List<CabifyDisponible> ListarCabifyDisponibles();
+        List<CabifyDisponible> ListarCabifyDisponibles(string OLatitud, string OLongitud, string DLatitud, string DLongitud);
+
+
     }
 }

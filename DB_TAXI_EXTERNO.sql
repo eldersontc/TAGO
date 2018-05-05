@@ -56,3 +56,57 @@ INSERT INTO [UberAvailable] VALUES ('VMB-258','Kia Sephia','Negro','00:01:00','3
 INSERT INTO [UberAvailable] VALUES ('CGR-963','Mazda CX-3','Negro','00:10:00','19.00','00:10:00');
 INSERT INTO [UberAvailable] VALUES ('XJU-236','Toyota Yaris','Blanco','00:03:00','18.00','00:20:00');
 INSERT INTO [UberAvailable] VALUES ('HER-412','Mazda CX-5','Plomo','00:12:00','15.00','00:30:00');
+
+
+
+--FERNANDO DB PARA CABIFY
+USE [DB_TAXI_EXTERNO];
+CREATE TABLE [CabifyDisponible]
+(
+[AutoPlaca]			varchar(7) PRIMARY KEY NOT NULL,
+[TiempoLlegada]		time not null,
+[TiempoViaje]		time not null,
+[Monto]				nvarchar(8),
+[OLatitud]			nvarchar(50),
+[OLongitud]			nvarchar(50),
+[DLatitud]			nvarchar(50),
+[DLongitud]			nvarchar(50)
+);
+CREATE TABLE [CabifyChofer]
+(
+[Codigo] varchar(4) PRIMARY KEY NOT NULL,
+[Nombres] varchar(50) NULL,
+[Apellidos] varchar(50) NULL,
+[Celular] varchar(50) NULL,
+[Reputacion] int NULL,
+[FechaRegistro] datetime NULL,
+[AutoPlaca] varchar (7),
+[AutoMarca] varchar (50) NULL,
+[AutoModelo] varchar (50) NULL,
+CONSTRAINT FK_AutoPlaca FOREIGN KEY (AutoPlaca)
+REFERENCES [CabifyDisponible](AutoPlaca)
+);
+
+INSERT INTO [CabifyDisponible] VALUES ('BBH-322','00:07:00','00:20:00','S/ 10.00','-12.128926','-76.981296','-12.111555','-77.002496');
+INSERT INTO [CabifyDisponible] VALUES ('JDB-159','00:08:00','00:25:00','S/ 17.00','-12.113611','-77.024984','-12.125695','-77.022195');
+INSERT INTO [CabifyDisponible] VALUES ('LSO-789','00:09:00','00:35:00','S/ 18.00','-12.124352','-77.031336','-12.118966','-77.040036');
+INSERT INTO [CabifyDisponible] VALUES ('PBC-321','00:10:00','01:02:00','S/ 20.00','-12.113343','-77.031453','-12.108098','-77.007420');
+INSERT INTO [CabifyDisponible] VALUES ('QTD-456','00:11:00','01:08:00','S/ 20.00','-12.103650','-77.030079','-12.100502','-76.969568');
+INSERT INTO [CabifyDisponible] VALUES ('MDS-741','00:12:00','01:15:00','S/ 25.00','-12.084807','-76.971413','-12.066803','-77.033898');
+INSERT INTO [CabifyDisponible] VALUES ('WSX-258','00:13:00','01:20:00','S/ 30.00','-12.057738','-77.035400','-12.131984','-77.030711');
+INSERT INTO [CabifyDisponible] VALUES ('HRT-963','00:14:00','00:42:00','S/ 19.00','-12.118725','-77.044787','-12.078987','-77.088475');
+INSERT INTO [CabifyDisponible] VALUES ('XJU-236','00:15:00','00:35:00','S/ 18.00','-12.064634','-77.127528','-12.059410','-77.147819');
+INSERT INTO [CabifyDisponible] VALUES ('VSP-412','00:16:00','00:28:00','S/ 15.00','-12.068474','-77.041901','-12.055506','-77.017525');
+INSERT INTO [CabifyChofer] VALUES ('C001','Hector','Gimenez Diaz','956356142','4','20/11/2017','BBH-322','Mazda','MX-5');
+INSERT INTO [CabifyChofer] VALUES ('C002','Alberto','Chavez Ortiz','978452152','3','12/04/2017','JDB-159','Toyota','GT86');
+INSERT INTO [CabifyChofer] VALUES ('C003','Juan','Namuche Tanta','963258741','5','18/10/2017','LSO-789','Toyota','RAV4');
+INSERT INTO [CabifyChofer] VALUES ('C004','Carlos','Zapata Del Rio','912445236','5','24/09/2017','PBC-321','Kia','Cerato');
+INSERT INTO [CabifyChofer] VALUES ('C005','Omar','Ipanaque Arevalo','987712456','3','12/08/2017','QTD-456','Kia','Optima');
+INSERT INTO [CabifyChofer] VALUES ('C006','Edwin','Susanibar Oblitas','923412574','4','26/07/2017','MDS-741','Toyota','TF101');
+INSERT INTO [CabifyChofer] VALUES ('C007','Dante','Mamani Quispe','986745214','4','14/06/2017','WSX-258','Kia','Sephia');
+INSERT INTO [CabifyChofer] VALUES ('C008','Raul','Franco Navarro','932567415','5','28/05/2017','HRT-963','Mazda','CX-3');
+INSERT INTO [CabifyChofer] VALUES ('C009','Julio','Salvador Chuquipul','917382468','5','10/04/2017','XJU-236','Toyota','Yaris');
+INSERT INTO [CabifyChofer] VALUES ('C010','Eduardo','Huaman Huaypa','987246147','4','28/03/2017','VSP-412','Mazda','CX-5');
+
+
+--select  (C.Nombres+' '+C.Apellidos) as 'Chofer', C.AutoMarca, C.AutoModelo, C.AutoPlaca, D.TiempoLlegada, D.TiempoViaje, D.Monto FROM CabifyDisponible D INNER JOIN CabifyChofer C ON D.AutoPlaca = C.AutoPlaca

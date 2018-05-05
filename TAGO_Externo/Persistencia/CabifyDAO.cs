@@ -113,16 +113,20 @@ namespace TAGO_Externo.Persistencia
             }
         }
 
-        public List<CabifyDisponible> ListarCabifyDisponibles()
+        public List<CabifyDisponible> ListarCabifyDisponibles(string OLatitud, string OLongitud, string DLatitud, string DLongitud)
         {
             List<CabifyDisponible> d_Encontrados = new List<CabifyDisponible>();
             CabifyDisponible d_Encontrado = null;
-            string sql = "SELECT  AutoPlaca, TiempoLlegada, TiempoViaje, Monto FROM CabifyDisponible";
+            string sql = "SELECT  AutoPlaca, TiempoLlegada, TiempoViaje, Monto, OLatitud, OLongitud, DLatitud, DLongitud FROM CabifyDisponible WHERE OLatitud = @OLatitud and OLongitud = @OLongitud and DLatitud = @DLatitud and  DLongitud = @DLongitud";
             using (SqlConnection conexion = new SqlConnection(cdc))
             {
                 conexion.Open();
                 using (SqlCommand comando = new SqlCommand(sql, conexion))
                 {
+                    comando.Parameters.Add(new SqlParameter("@OLatitud", OLatitud));
+                    comando.Parameters.Add(new SqlParameter("@OLongitud", OLongitud));
+                    comando.Parameters.Add(new SqlParameter("@DLatitud", DLatitud));
+                    comando.Parameters.Add(new SqlParameter("@DLongitud", DLongitud));
                     using (SqlDataReader resultado = comando.ExecuteReader())
                     {
                         while (resultado.Read())
@@ -132,7 +136,11 @@ namespace TAGO_Externo.Persistencia
                                 AutoPlaca = (string)resultado["AutoPlaca"],
                                 TiempoLlegada = (TimeSpan)resultado["TiempoLlegada"],
                                 TiempoViaje = (TimeSpan)resultado["TiempoViaje"],
-                                Monto = (string)resultado["Monto"]
+                                Monto = (string)resultado["Monto"],
+                                OLatitud = (string)resultado["OLatitud"],
+                                OLongitud = (string)resultado["OLongitud"],
+                                DLatitud = (string)resultado["DLatitud"],
+                                DLongitud = (string)resultado["DLongitud"]
                             };
                             d_Encontrados.Add(d_Encontrado);
                         }
