@@ -117,7 +117,7 @@ namespace TAGO_Externo.Persistencia
             }
             return UbersAvailableFound;
         }
-        public UberAvailable GetUberDriverAvailable(string placa)
+        public UberAvailable GetUberAvailable(string placa)
         {
             UberAvailable UberAvailableFound = null;
             string strCmd = "SELECT * FROM UberDriver WHERE Placa = @placa";
