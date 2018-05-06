@@ -1,112 +1,152 @@
 ﻿USE [master]
 GO
-CREATE DATABASE [DB_TAXI_EXTERNO] 
+/****** Object:  Database [DB_TAXI_EXTERNO]    Script Date: 06/05/2018 10:08:04 ******/
+CREATE DATABASE [DB_TAXI_EXTERNO]
 GO
+
 USE [DB_TAXI_EXTERNO]
 GO
-CREATE TABLE [dbo].[UberDriver](
-			[Placa] [varchar](7) NOT NULL,
-			[Nombres] [varchar](50) NULL,
-			[Apellidos] [varchar](50) NULL,
-			[Celular] [varchar](50) NULL,
-			[ModeloAuto] [varchar](50) NULL,
-			[Reputacion] [int] NULL,
-			[FechaRegistro] datetime NULL,
- CONSTRAINT [PK_UberDriver] PRIMARY KEY CLUSTERED 
+/****** Object:  Table [dbo].[CabifyChofer]    Script Date: 06/05/2018 10:08:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[CabifyChofer](
+	[Codigo] [varchar](4) NOT NULL,
+	[Nombres] [varchar](50) NULL,
+	[Apellidos] [varchar](50) NULL,
+	[Celular] [varchar](50) NULL,
+	[Reputacion] [int] NULL,
+	[FechaRegistro] [datetime] NULL,
+	[AutoPlaca] [varchar](7) NULL,
+	[AutoMarca] [varchar](50) NULL,
+	[AutoModelo] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
 (
-	[Placa] ASC
+	[Codigo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[CabifyDisponible]    Script Date: 06/05/2018 10:08:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[CabifyDisponible](
+	[AutoPlaca] [varchar](7) NOT NULL,
+	[TiempoLlegada] [int] NOT NULL,
+	[TiempoViaje] [int] NOT NULL,
+	[Monto] [decimal](18, 2) NULL,
+	[OLatitud] [nvarchar](50) NULL,
+	[OLongitud] [nvarchar](50) NULL,
+	[DLatitud] [nvarchar](50) NULL,
+	[DLongitud] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[AutoPlaca] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[UberAvailable]    Script Date: 06/05/2018 10:08:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
 CREATE TABLE [dbo].[UberAvailable](
-			[Placa] [varchar](7) NOT NULL,
-			[MarcaAuto] [varchar](50) NULL,
-			[ColorAuto] [varchar](50) NULL,
-			[TiempoLlegada] time not NULL,
-			[MontoACobrar] decimal(18,2) NULL,
-			[TiempoViaje] time not NULL,
-			[LatitudOrigen]  [varchar](50) NULL,
-			[LongitudOrigen]  [varchar](50) NULL,
-			[LatitudDestino]  [varchar](50) NULL,
-			[LongitudDestino]  [varchar](50) NULL,
+	[Placa] [varchar](7) NOT NULL,
+	[MarcaAuto] [varchar](50) NULL,
+	[ColorAuto] [varchar](50) NULL,
+	[TiempoLlegada] [int] NOT NULL,
+	[MontoACobrar] [decimal](18, 2) NULL,
+	[TiempoViaje] [int] NOT NULL,
+	[LatitudOrigen] [varchar](50) NULL,
+	[LongitudOrigen] [varchar](50) NULL,
+	[LatitudDestino] [varchar](50) NULL,
+	[LongitudDestino] [varchar](50) NULL,
  CONSTRAINT [PK_UberAvailable] PRIMARY KEY CLUSTERED 
 (
 	[Placa] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-INSERT INTO [UberDriver] VALUES ('ACE-322','Yan','Falcón Anaya','956356142','Mazda MX-5','4','2017/06/04');
-INSERT INTO [UberDriver] VALUES ('BBO-159','Fabricio','Ruiz Avila','978452152','Toyota GT86','3','2017/04/12');
-INSERT INTO [UberDriver] VALUES ('LSO-789','Juan','Tenorio Oliva','963258741','Toyota RAV4','5','2017/11/18');
-INSERT INTO [UberDriver] VALUES ('PBC-321','Marcelo','Estrada Suarez','912445236','Kia Cerato','5','2017/01/24');
-INSERT INTO [UberDriver] VALUES ('QTD-456','Alejandro','Morales Morales','987712456','Kia Optima','3','2017/02/12');
-INSERT INTO [UberDriver] VALUES ('MDS-741','Walter','Avalos Carranza','923412574','Toyota TF101','4','2017/05/26');
-INSERT INTO [UberDriver] VALUES ('VMB-258','Mauricio','Cahuana Diez','986745214','Kia Sephia','4','2017/03/14');
-INSERT INTO [UberDriver] VALUES ('CGR-963','Victor','Briceño Zevallos','932567415','Mazda CX-3','5','2017/06/28');
-INSERT INTO [UberDriver] VALUES ('XJU-236','Manuel','Cisneros Napravnik','917382468','Toyota Yaris','5','2018/01/10');
-INSERT INTO [UberDriver] VALUES ('HER-412','Daniel','Ramos Capcha','987246147','Mazda CX-5','3','2018/03/01');
-
-INSERT INTO [UberAvailable] VALUES ('ACE-322','Mazda MX-5','Negro','00:02:00','S/.10.00','00:02:00','-12.0927244','-76.972887','-12.118236714228026','-77.02026554003908');
-INSERT INTO [UberAvailable] VALUES ('BBO-159','Toyota GT86','Blanco','00:05:00','S/.23.00','00:40:00','-12.091814540508434','-76.97313407481784','-12.091360055131373','-77.02832221984863');
-INSERT INTO [UberAvailable] VALUES ('LSO-789','Toyota RAV4','Rojo','00:16:00','S/.16.00','00:30:00','-12.089453823602089','-76.97210139878905','-12.091360055131373','-77.02832221984863');
-INSERT INTO [UberAvailable] VALUES ('PBC-321','Kia Cerato','Rojo','00:04:00','S/.20.00','00:40:00','-12.084816810113443','-76.97889518560282','-12.07297951590042','-77.0595645904541');
-INSERT INTO [UberAvailable] VALUES ('QTD-456','Kia Optima','Plomo','00:09:00','S/.20.00','00:35:00','-12.07764211971136','-76.92885814644194','-12.084156625458899','-76.96638115200045');
-INSERT INTO [UberAvailable] VALUES ('MDS-741','Toyota TF101','Azul','00:03:00','S/.25.00','00:25:00','-12.086547177694914','-76.99537400933059','-12.007048986648007','-77.0585391122957');
-INSERT INTO [UberAvailable] VALUES ('VMB-258','Kia Sephia','Negro','00:01:00','S/.30.00','00:32:00','-12.086569843561476','-77.09495215342281','-12.083611828486012','-77.034141181873');
-INSERT INTO [UberAvailable] VALUES ('CGR-963','Mazda CX-3','Negro','00:10:00','S/.19.00','00:10:00','-12.069034669514785','-77.07844734191895','-12.091108275451344','-77.05325603485107');
-INSERT INTO [UberAvailable] VALUES ('XJU-236','Toyota Yaris','Blanco','00:03:00','S/.18.00','00:20:00','-12.083775551085374','-76.99249950809565','-12.072937549755197','-76.95167541503906');
-INSERT INTO [UberAvailable] VALUES ('HER-412','Mazda CX-5','Plomo','00:12:00','S/.15.00','00:30:00','-12.05427720267192','-76.97659088901992','-12.06886680242281','-76.93648338317871');
-
-
-
---FERNANDO DB PARA CABIFY
-USE [DB_TAXI_EXTERNO];
-CREATE TABLE [CabifyDisponible]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[UberDriver]    Script Date: 06/05/2018 10:08:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[UberDriver](
+	[Placa] [varchar](7) NOT NULL,
+	[Nombres] [varchar](50) NULL,
+	[Apellidos] [varchar](50) NULL,
+	[Celular] [varchar](50) NULL,
+	[ModeloAuto] [varchar](50) NULL,
+	[Reputacion] [int] NULL,
+	[FechaRegistro] [datetime] NULL,
+ CONSTRAINT [PK_UberDriver] PRIMARY KEY CLUSTERED 
 (
-[AutoPlaca]			varchar(7) PRIMARY KEY NOT NULL,
-[TiempoLlegada]		time not null,
-[TiempoViaje]		time not null,
-[Monto]				nvarchar(8),
-[OLatitud]			nvarchar(50),
-[OLongitud]			nvarchar(50),
-[DLatitud]			nvarchar(50),
-[DLongitud]			nvarchar(50)
-);
-CREATE TABLE [CabifyChofer]
-(
-[Codigo] varchar(4) PRIMARY KEY NOT NULL,
-[Nombres] varchar(50) NULL,
-[Apellidos] varchar(50) NULL,
-[Celular] varchar(50) NULL,
-[Reputacion] int NULL,
-[FechaRegistro] datetime NULL,
-[AutoPlaca] varchar (7),
-[AutoMarca] varchar (50) NULL,
-[AutoModelo] varchar (50) NULL,
-CONSTRAINT FK_AutoPlaca FOREIGN KEY (AutoPlaca)
-REFERENCES [CabifyDisponible](AutoPlaca)
-);
+	[Placa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
-INSERT INTO [CabifyDisponible] VALUES ('BBH-322','00:07:00','00:20:00','S/ 10.00','-12.128926','-76.981296','-12.111555','-77.002496');
-INSERT INTO [CabifyDisponible] VALUES ('JDB-159','00:08:00','00:25:00','S/ 17.00','-12.113611','-77.024984','-12.125695','-77.022195');
-INSERT INTO [CabifyDisponible] VALUES ('LSO-789','00:09:00','00:35:00','S/ 18.00','-12.124352','-77.031336','-12.118966','-77.040036');
-INSERT INTO [CabifyDisponible] VALUES ('PBC-321','00:10:00','01:02:00','S/ 20.00','-12.113343','-77.031453','-12.108098','-77.007420');
-INSERT INTO [CabifyDisponible] VALUES ('QTD-456','00:11:00','01:08:00','S/ 20.00','-12.103650','-77.030079','-12.100502','-76.969568');
-INSERT INTO [CabifyDisponible] VALUES ('MDS-741','00:12:00','01:15:00','S/ 25.00','-12.084807','-76.971413','-12.066803','-77.033898');
-INSERT INTO [CabifyDisponible] VALUES ('WSX-258','00:13:00','01:20:00','S/ 30.00','-12.057738','-77.035400','-12.131984','-77.030711');
-INSERT INTO [CabifyDisponible] VALUES ('HRT-963','00:14:00','00:42:00','S/ 19.00','-12.118725','-77.044787','-12.078987','-77.088475');
-INSERT INTO [CabifyDisponible] VALUES ('XJU-236','00:15:00','00:35:00','S/ 18.00','-12.064634','-77.127528','-12.059410','-77.147819');
-INSERT INTO [CabifyDisponible] VALUES ('VSP-412','00:16:00','00:28:00','S/ 15.00','-12.068474','-77.041901','-12.055506','-77.017525');
-INSERT INTO [CabifyChofer] VALUES ('C001','Hector','Gimenez Diaz','956356142','4','20/11/2017','BBH-322','Mazda','MX-5');
-INSERT INTO [CabifyChofer] VALUES ('C002','Alberto','Chavez Ortiz','978452152','3','12/04/2017','JDB-159','Toyota','GT86');
-INSERT INTO [CabifyChofer] VALUES ('C003','Juan','Namuche Tanta','963258741','5','18/10/2017','LSO-789','Toyota','RAV4');
-INSERT INTO [CabifyChofer] VALUES ('C004','Carlos','Zapata Del Rio','912445236','5','24/09/2017','PBC-321','Kia','Cerato');
-INSERT INTO [CabifyChofer] VALUES ('C005','Omar','Ipanaque Arevalo','987712456','3','12/08/2017','QTD-456','Kia','Optima');
-INSERT INTO [CabifyChofer] VALUES ('C006','Edwin','Susanibar Oblitas','923412574','4','26/07/2017','MDS-741','Toyota','TF101');
-INSERT INTO [CabifyChofer] VALUES ('C007','Dante','Mamani Quispe','986745214','4','14/06/2017','WSX-258','Kia','Sephia');
-INSERT INTO [CabifyChofer] VALUES ('C008','Raul','Franco Navarro','932567415','5','28/05/2017','HRT-963','Mazda','CX-3');
-INSERT INTO [CabifyChofer] VALUES ('C009','Julio','Salvador Chuquipul','917382468','5','10/04/2017','XJU-236','Toyota','Yaris');
-INSERT INTO [CabifyChofer] VALUES ('C010','Eduardo','Huaman Huaypa','987246147','4','28/03/2017','VSP-412','Mazda','CX-5');
-
-
---select  (C.Nombres+' '+C.Apellidos) as 'Chofer', C.AutoMarca, C.AutoModelo, C.AutoPlaca, D.TiempoLlegada, D.TiempoViaje, D.Monto FROM CabifyDisponible D INNER JOIN CabifyChofer C ON D.AutoPlaca = C.AutoPlaca
+GO
+SET ANSI_PADDING OFF
+GO
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C001', N'Hector', N'Gimenez Diaz', N'956356142', 4, CAST(0x0000A83100000000 AS DateTime), N'BBH-322', N'Mazda', N'MX-5')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C002', N'Alberto', N'Chavez Ortiz', N'978452152', 3, CAST(0x0000A75300000000 AS DateTime), N'JDB-159', N'Toyota', N'GT86')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C003', N'Juan', N'Namuche Tanta', N'963258741', 5, CAST(0x0000A81000000000 AS DateTime), N'LSO-789', N'Toyota', N'RAV4')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C004', N'Carlos', N'Zapata Del Rio', N'912445236', 5, CAST(0x0000A7F800000000 AS DateTime), N'PBC-321', N'Kia', N'Cerato')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C005', N'Omar', N'Ipanaque Arevalo', N'987712456', 3, CAST(0x0000A7CD00000000 AS DateTime), N'QTD-456', N'Kia', N'Optima')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C006', N'Edwin', N'Susanibar Oblitas', N'923412574', 4, CAST(0x0000A7BC00000000 AS DateTime), N'MDS-741', N'Toyota', N'TF101')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C007', N'Dante', N'Mamani Quispe', N'986745214', 4, CAST(0x0000A79200000000 AS DateTime), N'WSX-258', N'Kia', N'Sephia')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C008', N'Raul', N'Franco Navarro', N'932567415', 5, CAST(0x0000A78100000000 AS DateTime), N'HRT-963', N'Mazda', N'CX-3')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C009', N'Julio', N'Salvador Chuquipul', N'917382468', 5, CAST(0x0000A75100000000 AS DateTime), N'XJU-236', N'Toyota', N'Yaris')
+INSERT [dbo].[CabifyChofer] ([Codigo], [Nombres], [Apellidos], [Celular], [Reputacion], [FechaRegistro], [AutoPlaca], [AutoMarca], [AutoModelo]) VALUES (N'C010', N'Eduardo', N'Huaman Huaypa', N'987246147', 4, CAST(0x0000A74400000000 AS DateTime), N'VSP-412', N'Mazda', N'CX-5')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'BBH-322', 7, 20, CAST(10.00 AS Decimal(18, 2)), N'-12.1047528', N'-76.9634465', N'-12.0876296', N'-77.0501054')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'HRT-963', 14, 67, CAST(19.00 AS Decimal(18, 2)), N'-12.1047528', N'-76.9634465', N'-12.0876296', N'-77.0501054')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'JDB-159', 8, 25, CAST(17.00 AS Decimal(18, 2)), N'-12.113611', N'-77.024984', N'-12.125695', N'-77.022195')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'LSO-789', 9, 35, CAST(18.00 AS Decimal(18, 2)), N'-12.124352', N'-77.031336', N'-12.118966', N'-77.040036')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'MDS-741', 12, 30, CAST(25.00 AS Decimal(18, 2)), N'-12.084807', N'-76.971413', N'-12.066803', N'-77.033898')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'PBC-321', 10, 2, CAST(20.00 AS Decimal(18, 2)), N'-12.113343', N'-77.031453', N'-12.108098', N'-77.007420')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'QTD-456', 11, 12, CAST(20.00 AS Decimal(18, 2)), N'-12.103650', N'-77.030079', N'-12.100502', N'-76.969568')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'VSP-412', 16, 40, CAST(15.00 AS Decimal(18, 2)), N'-12.068474', N'-77.041901', N'-12.055506', N'-77.017525')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'WSX-258', 13, 45, CAST(30.00 AS Decimal(18, 2)), N'-12.057738', N'-77.035400', N'-12.131984', N'-77.030711')
+INSERT [dbo].[CabifyDisponible] ([AutoPlaca], [TiempoLlegada], [TiempoViaje], [Monto], [OLatitud], [OLongitud], [DLatitud], [DLongitud]) VALUES (N'XJU-236', 15, 12, CAST(18.00 AS Decimal(18, 2)), N'-12.064634', N'-77.127528', N'-12.059410', N'-77.147819')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'ACE-322', N'Mazda MX-5', N'Negro', 20, CAST(10.00 AS Decimal(18, 2)), 2, N'-12.1047528', N'-76.9634465', N'-12.0876296', N'-77.0501054')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'BBO-159', N'Toyota GT86', N'Blanco', 5, CAST(23.00 AS Decimal(18, 2)), 40, N'-12.1047528', N'-76.9634465', N'-12.0876296', N'-77.0501054')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'CGR-963', N'Mazda CX-3', N'Negro', 10, CAST(19.00 AS Decimal(18, 2)), 10, N'-12.069034669514785', N'-77.07844734191895', N'-12.091108275451344', N'-77.05325603485107')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'LSO-789', N'Toyota RAV4', N'Rojo', 16, CAST(16.00 AS Decimal(18, 2)), 30, N'-12.089453823602089', N'-76.97210139878905', N'-12.091360055131373', N'-77.02832221984863')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'MDS-741', N'Toyota TF101', N'Azul', 3, CAST(25.00 AS Decimal(18, 2)), 25, N'-12.086547177694914', N'-76.99537400933059', N'-12.007048986648007', N'-77.0585391122957')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'PBC-321', N'Kia Cerato', N'Rojo', 4, CAST(20.00 AS Decimal(18, 2)), 40, N'-12.084816810113443', N'-76.97889518560282', N'-12.07297951590042', N'-77.0595645904541')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'QTD-456', N'Kia Optima', N'Plomo', 9, CAST(20.00 AS Decimal(18, 2)), 35, N'-12.07764211971136', N'-76.92885814644194', N'-12.084156625458899', N'-76.96638115200045')
+INSERT [dbo].[UberAvailable] ([Placa], [MarcaAuto], [ColorAuto], [TiempoLlegada], [MontoACobrar], [TiempoViaje], [LatitudOrigen], [LongitudOrigen], [LatitudDestino], [LongitudDestino]) VALUES (N'VMB-258', N'Kia Sephia', N'Negro', 1, CAST(30.00 AS Decimal(18, 2)), 32, N'-12.086569843561476', N'-77.09495215342281', N'-12.083611828486012', N'-77.034141181873')
+INSERT [dbo].[UberDriver] ([Placa], [Nombres], [Apellidos], [Celular], [ModeloAuto], [Reputacion], [FechaRegistro]) VALUES (N'ACE-322', N'Yan', N'Falcón Anaya', N'956356142', N'Mazda MX-5', 4, CAST(0x0000A74D00000000 AS DateTime))
+INSERT [dbo].[UberDriver] ([Placa], [Nombres], [Apellidos], [Celular], [ModeloAuto], [Reputacion], [FechaRegistro]) VALUES (N'BBO-159', N'Fabricio', N'Ruiz Avila', N'978452152', N'Toyota GT86', 3, CAST(0x0000A83F00000000 AS DateTime))
+INSERT [dbo].[UberDriver] ([Placa], [Nombres], [Apellidos], [Celular], [ModeloAuto], [Reputacion], [FechaRegistro]) VALUES (N'HER-412', N'Daniel', N'Ramos Capcha', N'987246147', N'Mazda CX-5', 3, CAST(0x0000A85D00000000 AS DateTime))
+INSERT [dbo].[UberDriver] ([Placa], [Nombres], [Apellidos], [Celular], [ModeloAuto], [Reputacion], [FechaRegistro]) VALUES (N'QTD-456', N'Alejandro', N'Morales Morales', N'987712456', N'Kia Optima', 3, CAST(0x0000A83D00000000 AS DateTime))
+INSERT [dbo].[UberDriver] ([Placa], [Nombres], [Apellidos], [Celular], [ModeloAuto], [Reputacion], [FechaRegistro]) VALUES (N'XJU-236', N'Manuel', N'Cisneros Napravnik', N'917382468', N'Toyota Yaris', 5, CAST(0x0000A96C00000000 AS DateTime))
+ALTER TABLE [dbo].[CabifyChofer]  WITH CHECK ADD  CONSTRAINT [FK_AutoPlaca] FOREIGN KEY([AutoPlaca])
+REFERENCES [dbo].[CabifyDisponible] ([AutoPlaca])
+GO
+ALTER TABLE [dbo].[CabifyChofer] CHECK CONSTRAINT [FK_AutoPlaca]
+GO
+USE [master]
+GO
+ALTER DATABASE [DB_TAXI_EXTERNO] SET  READ_WRITE 
+GO
