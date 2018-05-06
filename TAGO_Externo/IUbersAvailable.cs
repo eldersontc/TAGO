@@ -15,7 +15,7 @@ namespace TAGO_Externo
     public interface IUbersAvailable
     {
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "UbersAvailable/{OLatitud, OLongitud, DLatitud, DLongitud}", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", UriTemplate = "UbersAvailable/{OLatitud}/{OLongitud}/{DLatitud}/{DLongitud}", ResponseFormat = WebMessageFormat.Json)]
         List<UberAvailable> ListTaxiUberAvailable(string OLatitud, string OLongitud, string DLatitud, string DLongitud);
 
         [OperationContract]

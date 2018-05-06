@@ -12,7 +12,7 @@ namespace TAGO_Presentacion.Models
         public string PlacaVehiculo { get; set; }
         public string MarcaVehiculo { get; set; }
         public string ModeloVehiculo { get; set; }
-        public int Precio { get; set; }
+        public decimal Precio { get; set; }
         public int Distancia { get; set; }
     }
 }

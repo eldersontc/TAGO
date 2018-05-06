@@ -83,7 +83,7 @@ namespace TAGO_Externo.Persistencia
             List<UberAvailable> UbersAvailableFound = new List<UberAvailable>();
             UberAvailable UberAvailableFound = null;
 
-            string strCmd = "SELECT * FROM UberAvailable WHERE OLatitud = @LatitudOrigen and OLongitud = @LongitudOrigen and DLatitud = @LatitudDestino and  DLongitud = @LongitudDestino";
+            string strCmd = "SELECT * FROM UberAvailable WHERE LatitudOrigen = @LatitudOrigen and LongitudOrigen = @LongitudOrigen and LatitudDestino = @LatitudDestino and  LongitudDestino = @LongitudDestino";
             using (SqlConnection sqlCnx = new SqlConnection(cadenaConexion))
             {
                 sqlCnx.Open();
@@ -102,9 +102,9 @@ namespace TAGO_Externo.Persistencia
                                 UPlaca = (string)sqlDR["Placa"],
                                 UMarcaAuto = (string)sqlDR["MarcaAuto"],
                                 UColorAuto = (string)sqlDR["ColorAuto"],
-                                UTiempoLlegada =(TimeSpan)sqlDR["TiempoLlegada"],
-                                UMontoACobrar = (string)sqlDR["MontoACobrar"],
-                                UTiempoViaje = (TimeSpan)sqlDR["TiempoViaje"],
+                                UTiempoLlegada =(int)sqlDR["TiempoLlegada"],
+                                UMontoACobrar = Convert.ToDecimal(sqlDR["MontoACobrar"]),
+                                UTiempoViaje = (int)sqlDR["TiempoViaje"],
                                 ULatitudOrigen = (string)sqlDR["LatitudOrigen"],
                                 ULongitudOrigen = (string)sqlDR["LongitudOrigen"],
                                 ULatitudDestino = (string)sqlDR["LatitudDestino"],
@@ -137,9 +137,9 @@ namespace TAGO_Externo.Persistencia
                                 UPlaca = (string)sqlDR["Placa"],
                                 UMarcaAuto = (string)sqlDR["MarcaAuto"],
                                 UColorAuto = (string)sqlDR["ColorAuto"],
-                                UTiempoLlegada = (TimeSpan)sqlDR["TiempoLlegada"],
-                                UMontoACobrar = (string)sqlDR["MontoACobrar"],
-                                UTiempoViaje = (TimeSpan)sqlDR["TiempoViaje"],
+                                UTiempoLlegada = (int)sqlDR["TiempoLlegada"],
+                                UMontoACobrar = Convert.ToDecimal(sqlDR["MontoACobrar"]),
+                                UTiempoViaje = (int)sqlDR["TiempoViaje"],
                                 ULatitudOrigen = (string)sqlDR["LatitudOrigen"],
                                 ULongitudOrigen = (string)sqlDR["LongitudOrigen"],
                                 ULatitudDestino = (string)sqlDR["LatitudDestino"],

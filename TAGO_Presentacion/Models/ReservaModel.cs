@@ -19,7 +19,7 @@ namespace TAGO_Presentacion.Models
         [Required]
         public string AutoPlaca { get; set; }
         [Required]
-        public int Precio { get; set; }
+        public decimal Precio { get; set; }
 
         public ClienteService.Tarjeta[] Tarjetas { get; set; }
 

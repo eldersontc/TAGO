@@ -17,7 +17,7 @@ namespace TAGO_Externo.Persistencia
         public CabifyChofer ObtenerCabifyChofer(string Codigo)
         {
             CabifyChofer c_Encontrado = null;
-            string sql = "SELECT Codigo, Nombres, Apellidos, Celular, Reputacion, CONVERT(VARCHAR(10), fecharegistro, 103) as 'FechaRegistro', AutoPlaca, AutoMarca, AutoModelo FROM CabifyChofer WHERE Codigo=@codigo";
+            string sql = "SELECT Codigo, Nombres, Apellidos, Celular, Reputacion, CONVERT(VARCHAR(10), fecharegistro, 103) as 'FechaRegistro', AutoPlaca, AutoMarca, AutoModelo FROM CabifyChofer WHERE AutoPlaca=@codigo";
             using (SqlConnection conexion = new SqlConnection(cdc))
             {
                 conexion.Open();
@@ -101,9 +101,9 @@ namespace TAGO_Externo.Persistencia
                             d_Encontrado = new CabifyDisponible()
                             {
                                 AutoPlaca = (string)resultado["AutoPlaca"],
-                                TiempoLlegada = (TimeSpan)resultado["TiempoLlegada"],
-                                TiempoViaje = (TimeSpan)resultado["TiempoViaje"],
-                                Monto = (string)resultado["Monto"]
+                                TiempoLlegada = (int)resultado["TiempoLlegada"],
+                                TiempoViaje = (int)resultado["TiempoViaje"],
+                                Monto = Convert.ToDecimal(resultado["Monto"])
 
                             };
                         }
@@ -134,9 +134,9 @@ namespace TAGO_Externo.Persistencia
                             d_Encontrado = new CabifyDisponible()
                             {
                                 AutoPlaca = (string)resultado["AutoPlaca"],
-                                TiempoLlegada = (TimeSpan)resultado["TiempoLlegada"],
-                                TiempoViaje = (TimeSpan)resultado["TiempoViaje"],
-                                Monto = (string)resultado["Monto"],
+                                TiempoLlegada = (int)resultado["TiempoLlegada"],
+                                TiempoViaje = (int)resultado["TiempoViaje"],
+                                Monto = Convert.ToDecimal(resultado["Monto"]),
                                 OLatitud = (string)resultado["OLatitud"],
                                 OLongitud = (string)resultado["OLongitud"],
                                 DLatitud = (string)resultado["DLatitud"],
