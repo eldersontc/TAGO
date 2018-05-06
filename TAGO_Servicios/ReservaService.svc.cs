@@ -22,24 +22,35 @@ namespace TAGO_Servicios
 
         public Reserva RegistrarReserva(Reserva entidad)
         {
-            if (entidad.IdCliente==0)
+            try
             {
-                throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                if (entidad.IdCliente == 0)
                 {
-                    Codigo = "0100",
-                    Descripcion = "Tiene que existir un cliente."
-                }, new FaultReason("Error al registrar la reserva."));
-            }
+                    throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                    {
+                        Codigo = "0100",
+                        Descripcion = "Tiene que existir un cliente."
+                    }, new FaultReason("Error al registrar la reserva."));
+                }
 
-            if (string.IsNullOrEmpty(entidad.Placa))
+                if (string.IsNullOrEmpty(entidad.Placa))
+                {
+                    throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
+                    {
+                        Codigo = "0101",
+                        Descripcion = "La placa no se está enviando en el registro."
+                    }, new FaultReason("Error al registrar la reserva."));
+                }
+                return entidadDA.Crear(entidad);
+            }
+            catch (Exception ex)
             {
                 throw new FaultException<AdministradorExcepciones>(new AdministradorExcepciones()
                 {
-                    Codigo = "0101",
-                    Descripcion = "La placa no se está enviando en el registro."
-                }, new FaultReason("Error al registrar la reserva."));
-            }
-            return entidadDA.Crear(entidad);
+                    Codigo = "Internal Server",
+                    Descripcion = "Error interno."
+                }, new FaultReason(string.Format("Error al registrar la reserva. Detalle: {0}",ex.InnerException!=null ? ex.InnerException.Message : ex.Message )));
+            }            
         }
     }
 }
