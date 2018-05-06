@@ -67,13 +67,34 @@ namespace TAGO_Presentacion.Controllers
                 return RetornarLogin();
 
             ReservaService.Reserva reseva = ObtenerReserva();
-            reseva.Placa = placa;
-            
-            AsignarReserva(reseva);
+            //reseva.Placa = placa;
+
+            //AsignarReserva(reseva);
+
+            ReservaModel model = new ReservaModel();
+            model.Origen = reseva.Origen;
+            model.Destino = reseva.Destino;
+            model.AutoPlaca = placa;
+            model.Conductor = "";
+            model.Precio = 10;
 
             ClienteService.ClienteServiceClient proxy = new ClienteService.ClienteServiceClient();
             ClienteService.Tarjeta[] tarjetas = proxy.ListarTarjetaxCliente(ObtenerCliente().DNI);
-            return View(tarjetas);
+
+            model.Tarjetas = tarjetas;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Pagar(ReservaModel model)
+        {
+            return View();
+        }
+
+        public ActionResult Tarjeta()
+        {
+            return View();
         }
     }
 }

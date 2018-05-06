@@ -1,5 +1,4 @@
-﻿@using TAGO_Presentacion.Models
-@model List<CandidatoModel>
+﻿@model List<TAGO_Presentacion.Models.CandidatoModel>
 
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
     <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i> TAGO</a>
@@ -27,7 +26,7 @@
         </thead>
         <tbody>
             @{
-                foreach (CandidatoModel candidato in Model)
+                foreach (var candidato in Model)
                 {
                     <tr>
                         <td>

@@ -30,7 +30,7 @@ namespace TAGO_Presentacion.Controllers
 
         public bool SessionExpirada()
         {
-            return Session["cliente"] == null || Session["reserva"] == null;
+            return Session["cliente"] == null;
         }
 
         public ActionResult RetornarLogin()
